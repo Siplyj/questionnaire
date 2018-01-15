@@ -6,23 +6,23 @@ body {
 }
 
 form {
+	display: inline-block;
 	position: absolute;
-    display: inline-block;
-    width: 300px;
-    height: 383px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+	width: 300px;
+	height: 343px;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
 }
 
 .paginat {
 	display: inline-block;
-    position: absolute;
-    width: 300px;
-    height: 383px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -60.44%);
+	position: absolute;
+	width: 300px;
+	height: 343px;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -61.66%);
 }
 
 #step_2, #step_3, #step_4, #step_5 {
@@ -85,19 +85,19 @@ form {
 
 .prev_next {
 	display: inline-block;
-    position: absolute;
-    width: 300px;
-    height: 383px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+	position: absolute;
+	width: 300px;
+	height: 343px;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -38.63%);
 }
 
 .prev, .next {
 	position: relative;
 	height: 40px;
 	width: 142px;
-	top: 342px;
+	top: 303px;
 	text-align: center;
 	font-size: 15px;
 	font-family: "Open Sans";
@@ -109,12 +109,14 @@ form {
 
 .next {
 	left: 12px;
+	color: #ff9800;
+	cursor: pointer;
 }
 
 .step_title {
 	font-size: 15px;
-    font-family: "Open Sans";
-    margin-top: 16px;
+	font-family: "Open Sans";
+	margin-top: 16px;
 }
 
 .login {
