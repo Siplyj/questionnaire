@@ -1,0 +1,126 @@
+body {
+	width: 100%;
+	height: 100%;
+	background: #f5f5f5;
+	font-family: "Open Sans";
+}
+
+form {
+	position: absolute;
+    display: inline-block;
+    width: 300px;
+    height: 383px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.paginat {
+	display: inline-block;
+    position: absolute;
+    width: 300px;
+    height: 383px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -60.44%);
+}
+
+#step_2, #step_3, #step_4, #step_5 {
+	display: none;
+}
+
+.login, .email {
+	width: 280px;
+	height: 50px;
+	font-size: 15px;
+	font-family: "Open Sans";
+	border-style: none;
+	border-radius: 2px;
+	background: #ffffff;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+	padding: 0px 0px 0px 20px;
+
+}
+
+.login, .email {
+	margin-right: -4px;
+}
+
+.login::-webkit-input-placeholder {
+	color: #bbbbbb;
+}
+
+.login::-moz-placeholder-color {
+	color: #bbbbbb;
+}
+
+.email::-webkit-input-placeholder {
+	color: #bbbbbb;
+}
+
+.email::-moz-placeholder-color {
+	color: #bbbbbb;
+}
+
+.step_button_active, .button_step_1, .button_step_2, .button_step_3, .button_step_4 {
+	position: relative;
+	height: 40px;
+	width: 40px;
+	text-align: center;
+	font-size: 15px;
+	font-family: "Open Sans";
+	border-style: none;
+	border-radius: 2px;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+	background: #ffffff;
+}
+
+.step_button_active {
+	font-weight: bold;
+}
+
+.button_step_2, .button_step_3, .button_step_4 {
+	color: #808080;
+}
+
+.prev_next {
+	display: inline-block;
+    position: absolute;
+    width: 300px;
+    height: 383px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.prev, .next {
+	position: relative;
+	height: 40px;
+	width: 142px;
+	top: 342px;
+	text-align: center;
+	font-size: 15px;
+	font-family: "Open Sans";
+	border-style: none;
+	border-radius: 2px;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+	background: #ffffff;
+}
+
+.next {
+	left: 12px;
+}
+
+.step_title {
+	font-size: 15px;
+    font-family: "Open Sans";
+    margin-top: 16px;
+}
+
+.login {
+	margin-top: 40px;
+}
+
+.email {
+	margin-top: 16px;
+}

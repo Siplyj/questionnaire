@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Анкета</title>
+
+	<script type="text/javascript" src="source/jquery-3.2.1.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="source/css/style.css">
+
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans" />
+</head>
+
+<body>
+	<div class="paginat">
+		<input type="button" class="button_step_1 step_button_active" value="1" style="color: #000000">
+		<input type="button" class="button_step_2" disabled value="2">
+		<input type="button" class="button_step_3" disabled value="3">
+		<input type="button" class="button_step_4" disabled value="4">
+	</div>
+
+	<div class="prev_next">
+		<input type="button" class="prev" disabled value="&#12296;  Предыдущий">
+		<input type="button" class="next" disabled value="Следующий  &#12297;">
+	</div>
+
+	<form id="step_1" class="auth-form" method="post">
+
+		<div class="step_title">1. Введите имя и e-mail</div>
+
+		<input type="text" class="login" placeholder="Имя">
+		</br>
+		<input type="text" class="email" placeholder="E-mail">
+		</br>
+	</form>
+
+</body>
+</html>
