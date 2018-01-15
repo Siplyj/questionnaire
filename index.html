@@ -34,5 +34,96 @@
 		<input type="text" class="email" placeholder="E-mail">
 		</br>
 	</form>
+
+	<script>
+		$(document).ready(function () {
+			var form_login, form_email;
+
+			// Первый этап
+			// Проверка полей на пустоту
+
+			var from_step = 1; // С какого этапа пришли
+			var to_step = 1; // На какой этап пришли
+			var last_step = 1; // Последний доступный этап
+			var max_step = 1; // Тоже последний доступный этап. Нужен для проверок различных частных случаев
+
+			function validLoginEmail() {
+
+				// Проверка логина
+				var login = $(".login").val();
+				var valid_login = /^[a-zа-яё][a-zа-яё0-9 _-]+$/gi;
+
+				$(".login").removeClass("error_bording_login");
+				$(".login").css("border-style", "none");
+				$(".error_message_login").remove();
+
+				if (!valid_login.test(login)) {
+
+					if (!$(".login").hasClass("error_bording_login")) {
+
+						if($(".login").val() == 0) {
+							$("<span class='error_message_login'> - поле не может быть пустым</span>").insertAfter($(".login"));
+						} else {
+							$("<span class='error_message_login'> - логин введен некорректно</span>").insertAfter($(".login"));
+						}
+						$(".login").addClass("error_bording_login");
+						$(".login").css("border-style", "solid");
+					};
+
+					$(".error_message_login").css("left", 100 + "%");
+					$(".error_message_login").css("top", $(".login").position().top + $(".login").outerHeight(true) - $(".login").outerHeight()/2 - $(".error_message_login").outerHeight() / 2);
+						form_login = "";
+				} else {
+					form_login = login;
+					$(".login").removeClass("error_bording_login");
+					$(".login").css("border-style", "none");
+					$(".error_message_login").remove();
+				};
+
+				// Проверка e-mail
+				var email = $(".email").val();
+				var valid_email = /[a-z0-9_\.-]+@[a-z0-9-]+\.[a-z]/gi;
+
+				$(".email").removeClass("error_bording_email");
+				$(".email").css("border-style", "none");
+				$(".error_message_email").remove();
+
+				if (!valid_email.test(email)) {
+
+					if (!$(".email").hasClass("error_bording_email")) {
+
+						if($(".email").val() == 0) {
+							$("<span class='error_message_email'> - поле не может быть пустым</span>").insertAfter($(".email"));
+						} else {
+							$("<span class='error_message_email'> - email введен некорректно</span>").insertAfter($(".email"));
+						}
+						$(".email").addClass("error_bording_email");
+						$(".email").css("border-style", "solid");
+					};
+
+					$(".error_message_email").css("left", 100 + "%");
+					$(".error_message_email").css("top", $(".email").position().top + $(".email").outerHeight(true) - $(".email").outerHeight()/2 - $(".error_message_email").outerHeight() / 2);
+						form_email = "";
+				} else {
+					form_email = email;
+					$(".email").removeClass("error_bording_email");
+					$(".email").css("border-style", "none");
+					$(".error_message_email").remove();
+				};
+
+				if (form_login && form_email) {
+					$("#step_1").css("display", "none");
+					$("#step_2").css("display", "inline-block");
+				}
+			}
+
+			$(document).on("click", ".next", function () {
+				if (to_step == 1) {
+					validLoginEmail();
+				};
+			});
+		});
+	</script>
+	
 </body>
 </html>
