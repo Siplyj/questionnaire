@@ -81,6 +81,17 @@
 		</p>
 	</form>
 
+	<form id="step_4" class="auth-form" method="post">
+				
+		<div class="step_title">4. Выберите любимого котика</div>
+
+		<div class="cats cat1"></div>
+		<div class="cats cat2"></div>
+		<div class="cats cat3"></div>
+		<div class="dogs dog4"></div></br>
+		<p id='error_message_animal'>Вы выбрали собачку. А надо котика.</p>
+	</form>
+
 	<script>
 		$(document).ready(function () {
 			var form_login, form_email, form_country_name, form_city_name,
@@ -410,6 +421,8 @@
 					validCountryCity();
 				} else if (to_step == 3) {
 					validSocial();
+				} else if (to_step == 4) {
+					
 				};
 			});
 
