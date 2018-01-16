@@ -58,3 +58,7 @@
 	width: 300px;
 	color: #ff0000;
 }
+
+.error_message_link {
+    top: 7px;
+}
