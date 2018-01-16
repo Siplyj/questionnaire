@@ -21,7 +21,7 @@
 	</div>
 
 	<div class="prev_next">
-		<input type="button" class="prev" disabled value="&#12296;  Предыдущий">
+		<input type="button" class="prev" value="&#12296;  Предыдущий">
 		<input type="button" class="next" value="Следующий  &#12297;">
 	</div>
 
@@ -33,6 +33,23 @@
 		</br>
 		<input type="text" class="email" placeholder="E-mail">
 		</br>
+	</form>
+
+	<form id="step_2" class="auth-form" method="post">
+
+		<div class="step_title">2. Выберите страну и город</div>
+
+		<ul id="select_countries">
+			<li><a id="countries_header">Страна</a>
+				<ul style="z-index: 1"></ul>
+			</li>
+		</ul>
+				
+		<ul id="select_cities">
+			<li><a id="cities_header">Город</a>
+				<ul style="z-index: 1"></ul>
+			</li>
+		</ul>
 	</form>
 
 	<script>
@@ -119,9 +136,19 @@
 
 			$(document).on("click", ".next", function () {
 				if (to_step == 1) {
+					to_step = 2;
 					validLoginEmail();
 				};
 			});
+
+			$(document).on("click", ".prev", function () {
+				if (to_step == 2) {
+					to_step = 1;
+					$("#step_2").css("display", "none");
+					$("#step_1").css("display", "inline-block");
+				};
+			});
+
 		});
 	</script>
 	
