@@ -136,6 +136,10 @@
 				}
 			}
 
+
+
+
+
 			//Второй этап
 			var form_country_val = "";	// Для проверки номера страны
 
@@ -158,15 +162,12 @@
 
 			});
 
-			$(document).on("mouseleave", "#select_countries ul", function () {
-
-				$("#select_cities").css("display", "block");
-				$("#select_countries ul").css("display", "none");
-
-			});
-
 			// Клик по названию страны из списка
 			$(document).on("click", ".countries_element", function () {
+
+				$("#select_countries").removeClass("error_bording_country");
+				$("#select_countries").css("border-style", "none");
+				$(".error_message_country").remove();
 
 				// Если список городов не пуст - очистить его
 				if ($(".cities_element").length > 0) { 
@@ -204,11 +205,12 @@
 				};
 			});
 
-			$(document).on("mouseleave", "#select_cities ul", function () {
-				$("#select_cities ul").css("display", "none");
-			});
 
 			$(document).on("click", ".cities_element", function () { // Если выбрали город
+
+				$("#select_cities").removeClass("error_bording_city");
+				$("#select_cities").css("border-style", "none");
+				$(".error_message_city").remove();
 
 				form_city_name = $(this).text(); // записали название города для последнего этапа
 				$("#cities_header").html(form_city_name);
@@ -216,13 +218,53 @@
 				$("#select_cities ul").css("display", "none");
 			});
 
+			function validCountryCity() {
+
+				$("#select_countries").removeClass("error_bording_country");
+				$("#select_countries").css("border-style", "none");
+				$(".error_message_country").remove();
+
+				$("#select_cities").removeClass("error_bording_city");
+				$("#select_cities").css("border-style", "none");
+				$(".error_message_city").remove();
+
+				if ($("#countries_header").html() == "Страна") {
+					$("<span class='error_message_country'> - поле не может быть пустым</span>").insertAfter($("#select_countries"));
+
+					$(".error_message_country").css("left", 100 + "%");
+					$(".error_message_country").css("top", $("#select_countries").position().top + $("#select_countries").outerHeight(true) - $("#select_countries").outerHeight()/2 - $(".error_message_country").outerHeight() / 2);
+
+					$("#select_countries").addClass("error_bording_country");
+					$("#select_countries").css("border-style", "solid");
+				} 
+
+				if ($("#cities_header").html() == "Город") {
+					$("<span class='error_message_city'> - поле не может быть пустым</span>").insertAfter($("#select_countries"));
+
+					$(".error_message_city").css("left", 100 + "%");
+					$(".error_message_city").css("top", $("#select_cities").position().top + $("#select_cities").outerHeight(true) - $("#select_cities").outerHeight()/2 - $(".error_message_city").outerHeight() / 2);
+
+					$("#select_cities").addClass("error_bording_city");
+					$("#select_cities").css("border-style", "solid");
+				} 
+
+				if (($("#countries_header").html() != "Страна") && ($("#cities_header").html() != "Город")) {
+					$("#step_2").css("display", "none");
+					$("#step_3").css("display", "inline-block");
+					to_step = 3;
+				}
+
+			};
+
 
 
 
 			$(document).on("click", ".next", function () {
 				if (to_step == 1) {
 					validLoginEmail();
-				};
+				} else if (to_step == 2) {
+					validCountryCity();
+				}
 			});
 
 			$(document).on("click", ".prev", function () {
