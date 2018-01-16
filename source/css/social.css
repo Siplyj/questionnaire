@@ -1,0 +1,52 @@
+.checkbox {
+	display: inline-block;
+}
+
+.social_network {
+	margin-left: 5px;
+	display: inline-block;
+	width: 130px;
+}
+
+.social_group {
+	display: inline-table;
+	position: absolute;
+	width: 225%;
+}
+
+.social_group_facebook {
+	top: 77px;
+}
+
+.social_group_vk {
+	top: 121px;
+}
+
+.social_group_twitter {
+	top: 165px;
+}
+
+.social_group_ok {
+	top: 209px;
+}
+
+#vk_login, #twitter_login, #ok_login {
+	margin-top: 5px;
+}
+
+#facebook_login, #vk_login, #twitter_login, #ok_login {
+	display: inline-block;
+	height: 33px;
+	width: 260px;
+	padding: 0px 0px 0px 15px;
+	font-size: 13px;
+	font-family: "Open Sans";
+}
+
+.hide_social_link {
+	visibility: hidden;
+}
+
+#vk_login, #twitter_login, #ok_login {
+	margin-top: 0px;
+}

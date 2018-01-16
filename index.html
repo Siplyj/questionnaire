@@ -9,6 +9,7 @@
 
 	<link rel="stylesheet" type="text/css" href="source/css/style.css">
 	<link rel="stylesheet" type="text/css" href="source/css/select.css">
+	<link rel="stylesheet" type="text/css" href="source/css/social.css">
 
 	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans" />
 </head>
@@ -51,6 +52,33 @@
 				<ul style="z-index: 1"></ul>
 			</li>
 		</ul>
+	</form>
+
+	<form id="step_3" class="auth-form" method="post">
+			
+		<div class="step_title">3. Отметьте социальные сети</div>
+
+		<p class="social_group social_group_facebook">
+			<input type="checkbox" id="facebook_checkbox" class="checkbox">
+			<label for="facebook_checkbox" class="social_network">Facebook</label>
+			<input type="text" class="hide_social_link" id="facebook_login" style="border: 2px solid rgba(255, 255, 255, 0); border-radius: 2px;" placeholder="Ваша страница в Facebook">
+		</p>
+
+		<p class="social_group social_group_vk">
+			<input type="checkbox" id="vk_checkbox" class="checkbox">
+			<label for="vk_checkbox" class="social_network">Вконтакте</label>
+			<input type="text" class="hide_social_link" id="vk_login" style="border: 2px solid rgba(255, 255, 255, 0); border-radius: 2px;" placeholder="Ваша страница в Вконтакте">
+		</p>
+		<p class="social_group social_group_twitter">
+			<input type="checkbox" id="twitter_checkbox" class="checkbox">
+			<label for="twitter_checkbox" class="social_network">Twitter</label>
+			<input type="text" class="hide_social_link" id="twitter_login" style="border: 2px solid rgba(255, 255, 255, 0); border-radius: 2px;" placeholder="Ваша страница в Twitter">
+		</p>
+		<p class="social_group social_group_ok">
+			<input type="checkbox" id="ok_checkbox" class="checkbox">
+			<label for="ok_checkbox" class="social_network">Одноклассники</label>
+			<input type="text" class="hide_social_link" id="ok_login" style="border: 2px solid rgba(255, 255, 255, 0); border-radius: 2px;" placeholder="Ваша страница в Одноклассниках">
+		</p>
 	</form>
 
 	<script>
@@ -205,7 +233,7 @@
 				};
 			});
 
-
+			// Клик по названию города из списка
 			$(document).on("click", ".cities_element", function () { // Если выбрали город
 
 				$("#select_cities").removeClass("error_bording_city");
@@ -264,6 +292,8 @@
 					validLoginEmail();
 				} else if (to_step == 2) {
 					validCountryCity();
+				} else if (to_step == 3) {
+					
 				}
 			});
 
@@ -272,6 +302,10 @@
 					to_step = 1;
 					$("#step_2").css("display", "none");
 					$("#step_1").css("display", "inline-block");
+				} else if (to_step == 3) {
+					to_step = 2;
+					$("#step_3").css("display", "none");
+					$("#step_2").css("display", "inline-block");
 				};
 			});
 
