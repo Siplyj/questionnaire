@@ -411,9 +411,38 @@
 				};
 			};
 
+			// Четвертый этап
+			// Клик по изображениям. Если выбрана собачка, то показываем предупреждение
+			$(document).on("click", "#step_4 div", function() {
+
+				if ($(this).hasClass("cats")) {
+					$(".cats").css("border", "4px solid #f5f5f5");
+					$(this).css("display", "block");
+					$(this).css("border", "4px solid #ff9100");
+					$("#error_message_animal").css("display", "none");
+					$(".dog4").css("border", "4px solid #f5f5f5");
+					form_cat = $(this).clone(); // Записываем котика для последнего этапа
+				} else if ($(this).hasClass("dogs")) {
+					$(".cats").css("border", "4px solid #f5f5f5");
+					$(".dog4").css("border", "4px solid #ff9100");
+					form_cat = "";
+				};
+			});
+
+			function validCat() {
+				if (form_cat) {
+					$("#step_4").css("display", "none");
+					$("#step_5").css("display", "inline-block");
+					to_step = 5;
+				} else {
+					$("#error_message_animal").css("display", "block");
+					
+				}
+			}
 
 
 
+			// Переходы по кнопкам "Следующий"
 			$(document).on("click", ".next", function () {
 				if (to_step == 1) {
 					validLoginEmail();
@@ -422,10 +451,11 @@
 				} else if (to_step == 3) {
 					validSocial();
 				} else if (to_step == 4) {
-					
+					validCat();
 				};
 			});
 
+			// Переходы по кнопкам "Предыдущий"
 			$(document).on("click", ".prev", function () {
 				if (to_step == 2) {
 					to_step = 1;
@@ -441,9 +471,8 @@
 					$("#step_3").css("display", "inline-block");
 				};
 			});
-
+			
 		});
 	</script>
-	
 </body>
 </html>
