@@ -8,6 +8,7 @@
 	<script type="text/javascript" src="source/jquery-3.2.1.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="source/css/style.css">
+	<link rel="stylesheet" type="text/css" href="source/css/select.css">
 
 	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans" />
 </head>
@@ -131,12 +132,95 @@
 				if (form_login && form_email) {
 					$("#step_1").css("display", "none");
 					$("#step_2").css("display", "inline-block");
+					to_step = 2;
 				}
 			}
 
+			//Второй этап
+			var form_country_val = "";	// Для проверки номера страны
+
+			// Получение списка стран
+			$.getJSON("data/cities/countries.json", function(data){
+				$.each(data, function(val, key) {
+					$("#select_countries ul").append("<li><a class='countries_element' data-country="+val+">"+key+"</a></li>");
+				});
+			});
+
+			// Клик по заголовку списка стран
+			$(document).on("click", "#countries_header", function () {
+
+				if ($("#select_countries ul").is(":visible")) {
+					$("#select_countries ul").css("display", "none");
+				} else {
+					$("#select_countries ul").css("display", "block");
+					$("#select_cities ul").css("display", "none");
+				};
+
+			});
+
+			$(document).on("mouseleave", "#select_countries ul", function () {
+
+				$("#select_cities").css("display", "block");
+				$("#select_countries ul").css("display", "none");
+
+			});
+
+			// Клик по названию страны из списка
+			$(document).on("click", ".countries_element", function () {
+
+				// Если список городов не пуст - очистить его
+				if ($(".cities_element").length > 0) { 
+					$(".cities_element").remove();
+					$("#cities_header").html("Город");
+					$("#cities_header").css("color", "#bbbbbb");
+					$("#select_cities ul").css("display", "none");
+				};
+
+				form_country_val = $(this).attr("data-country"); // Записали номер страны для загрузки спика нужных городов
+				form_country_name = $(this).text(); // Записали название страны для последнего этапа
+				$("#countries_header").html(form_country_name);
+				$("#countries_header").css("color", "#000000");
+				$("#select_countries ul").css("display", "none");
+				$("#select_cities").css("display", "block");
+
+				// Получение списка городов
+				$.getJSON("data/cities/cities.json", function(data){
+					$.each(data, function(val, key) {
+						if(key.country == form_country_val) {
+							$("#select_cities ul").css("display", "none");
+							$("#select_cities ul").append("<li><a class='cities_element' data-cities="+val+">"+key.name+"</a></li>");
+						};
+					});
+				});
+			});
+
+			// Клик по заголовку списка городов
+			$(document).on("click", "#cities_header", function () {
+
+				if ($("#select_cities ul").is(":visible")) {
+					$("#select_cities ul").css("display", "none");
+				} else {
+					$("#select_cities ul").css("display", "block");
+				};
+			});
+
+			$(document).on("mouseleave", "#select_cities ul", function () {
+				$("#select_cities ul").css("display", "none");
+			});
+
+			$(document).on("click", ".cities_element", function () { // Если выбрали город
+
+				form_city_name = $(this).text(); // записали название города для последнего этапа
+				$("#cities_header").html(form_city_name);
+				$("#cities_header").css("color", "#000000");
+				$("#select_cities ul").css("display", "none");
+			});
+
+
+
+
 			$(document).on("click", ".next", function () {
 				if (to_step == 1) {
-					to_step = 2;
 					validLoginEmail();
 				};
 			});

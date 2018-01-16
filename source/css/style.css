@@ -92,11 +92,11 @@ form {
 	margin-top: 16px;
 }
 
-.login {
+.login, #select_countries {
 	margin-top: 40px;
 }
 
-.email {
+.email, #select_cities {
 	margin-top: 16px;
 }
 
@@ -122,12 +122,12 @@ form {
 	border-radius: 2px;
 	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 	background: #ffffff;
+	color: #ff9800;
+	cursor: pointer;
 }
 
 .next {
 	left: 12px;
-	color: #ff9800;
-	cursor: pointer;
 }
 
 .error_bording_login, .error_bording_email {
