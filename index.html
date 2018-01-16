@@ -523,7 +523,18 @@
 				};
 
 				$("#final_social").append(final_social);
+
+				//Динамическое изменение ширины блока в зависимости от ширины контента
+				var max_width = 0;
+				$("#step_5 p").each(function function_name(argument) {
+					if ($(this).width() > max_width) {
+						max_width = $(this).width();
+					}
+				});
+				var step_5_width = 25 + max_width + 50 + $(".final_cat").width() + 24 + "px";
+				$("#step_5").css("width", step_5_width);
 			}
+
 
 
 
