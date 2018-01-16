@@ -10,6 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="source/css/style.css">
 	<link rel="stylesheet" type="text/css" href="source/css/select.css">
 	<link rel="stylesheet" type="text/css" href="source/css/social.css">
+	<link rel="stylesheet" type="text/css" href="source/css/final.css">
 
 	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans" />
 </head>
@@ -23,8 +24,12 @@
 	</div>
 
 	<div class="prev_next">
-		<input type="button" class="prev" value="&#12296;  Предыдущий">
-		<input type="button" class="next" value="Следующий  &#12297;">
+		<input type="button" class="prev" value="〈  Предыдущий">
+		<input type="button" class="next" value="Следующий  〉">
+	</div>
+
+	<div id="final_button">
+		<input type="button" class="go_to_start" value="Пройти заново">
 	</div>
 
 	<form id="step_1" class="auth-form" method="post">
@@ -91,6 +96,14 @@
 		<div class="dogs dog4"></div></br>
 		<p id='error_message_animal'>Вы выбрали собачку. А надо котика.</p>
 		<p id='error_message_animal_none'>Вы забыли выбрать котика.</p>
+	</form>
+
+	<form id="step_5" class="auth-form" method="post">
+		<p id="final_login"></p>
+		<p id="final_email"></p>
+		<p id="final_region"></p>
+		<div id="final_cat"></div>
+		<p id="final_social"></p>
 	</form>
 
 	<script>
@@ -408,7 +421,9 @@
 					$("#step_3").css("display", "none");
 					$("#step_4").css("display", "inline-block");
 					to_step = 4;
-	
+					$(".next").val("Завершить");
+					$(".next").css("background", "#ff9800");
+					$(".next").css("color", "#ffffff");
 				};
 			};
 
@@ -436,6 +451,9 @@
 				if (form_cat) {
 					$("#step_4").css("display", "none");
 					$("#step_5").css("display", "inline-block");
+					$(".paginat").css("display", "none");
+					$(".prev_next").css("display", "none");
+					$(".go_to_start").css("display", "inline-block");
 					to_step = 5;
 				} else if (($(".dog4").css("border")) == "4px solid rgb(255, 145, 0)") {
 					$("#error_message_animal").css("display", "block");
@@ -473,6 +491,9 @@
 					to_step = 3;
 					$("#step_4").css("display", "none");
 					$("#step_3").css("display", "inline-block");
+					$(".next").val("Следующий  〉");
+					$(".next").css("background", "#ffffff");
+					$(".next").css("color", "#ff9800");
 				};
 			});
 
