@@ -130,11 +130,11 @@ form {
 	left: 12px;
 }
 
-.error_bording_login, .error_bording_email, .error_bording_country, .error_bording_city {
+.error_bording_login, .error_bording_email, .error_bording_country, .error_bording_city, .error_bording_link {
 	border: 2px solid #ff0000;
 }
 
-.error_message_login, .error_message_email, .error_message_country, .error_message_city {
+.error_message_login, .error_message_email, .error_message_country, .error_message_city, .error_message_link {
 	display: inline-table;
 	position: absolute;
 	margin-left: 5px;

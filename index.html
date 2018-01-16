@@ -83,7 +83,8 @@
 
 	<script>
 		$(document).ready(function () {
-			var form_login, form_email;
+			var form_login, form_email, form_country_name, form_city_name,
+			form_facebook, form_vk, form_twitter, form_ok, form_cat;
 
 			// Первый этап
 			// Проверка полей на пустоту
@@ -285,6 +286,121 @@
 			};
 
 
+			//Третий этап
+			$(document).on("click", ".checkbox", function () {
+
+				// Если чекбокс включился, то показать соответствующее поле для ввода
+				if ($(this).prop("checked")) { 
+					$(this).addClass("checkbox_check");
+					$(this).siblings("input[type=text]").removeAttr("class");
+				} else {
+					$(this).removeClass("checkbox_check");
+					$(this).siblings("input[type=text]").removeClass("error_bording_link");
+					$(this).siblings("input[type=text]").addClass("hide_social_link");
+					$(this).siblings("input[type=text]").css("border-color", "rgba(255, 255, 255, 0)");
+					$(this).siblings("input[type=text]").val("");
+					$(this).siblings("span").remove("#error_message_link");
+				}
+			});
+
+			// Проверка каждого поля на корректное заполнение
+			function validSocial() {
+
+				$(".error_message_checkbox").remove();
+
+				form_facebook = $("#facebook_login").val();
+				form_vk = $("#vk_login").val();
+				form_twitter = $("#twitter_login").val();
+				form_ok = $("#ok_login").val();
+
+				
+				var valid_link_facebook = /((http|https):\/\/)?(www.)?(fb|facebook).com\/[a-z0-9_\.-]+$/gi;
+				var valid_link_vk = /((http|https):\/\/)?(www.)?vk.com\/[a-z0-9_\.-]+$/gi;
+				var valid_link_twitter = /((http|https):\/\/)?(www.)?twitter.com\/[a-z0-9_\.-]+$/gi;
+				var valid_link_ok = /((http|https):\/\/)?(www.)?ok.ru\/[a-z0-9_\.-]+$/gi;
+
+				// Проверка Facebook
+				if ($("#facebook_login").siblings("#error_message_link")) {
+					$("#facebook_login").siblings().remove("#error_message_link");
+					$("#facebook_login").css("border-color", "rgba(255, 255, 255, 0)");
+					$("#facebook_login").removeClass("error_bording_link");
+					form_facebook = $("#facebook_login").val(); // Записали ссылку на профиль в Facebook для последнего этапа
+				};
+
+				if (!valid_link_facebook.test(form_facebook) && !$("#facebook_login").hasClass("hide_social_link")) {
+
+					$("<span id='error_message_link' class='error_message_link'> - введите корректный адрес</span>").insertAfter($("#facebook_login"));
+
+					$("#facebook_login").css("border-color", "#ff0000");
+					$("#facebook_login").addClass("error_bording_link");
+				};
+
+				// Проверка Вконтакте
+				if ($("#vk_login").siblings("#error_message_link")) {
+					$("#vk_login").siblings().remove("#error_message_link");
+					$("#vk_login").css("border-color", "rgba(255, 255, 255, 0)");
+					$("#vk_login").removeClass("error_bording_link");
+					form_vk = $("#vk_login").val(); // Записали ссылку на профиль в Вконтакте для последнего этапа
+				};
+
+				if (!valid_link_vk.test(form_vk) && !$("#vk_login").hasClass("hide_social_link")) {
+
+					$("<span id='error_message_link' class='error_message_link'> - введите корректный адрес</span>").insertAfter($("#vk_login"));
+
+					$("#vk_login").css("border-color", "#ff0000");
+					$("#vk_login").addClass("error_bording_link");
+				};
+
+				// Проверка Twitter
+				if ($("#twitter_login").siblings("#error_message_link")) {
+					$("#twitter_login").siblings().remove("#error_message_link");
+					$("#twitter_login").css("border-color", "rgba(255, 255, 255, 0)");
+					$("#twitter_login").removeClass("error_bording_link");
+					form_twitter = $("#twitter_login").val(); // Записали ссылку на профиль в Twitter для последнего этапа
+				};
+
+				if (!valid_link_twitter.test(form_twitter) && !$("#twitter_login").hasClass("hide_social_link")) {
+
+					$("<span id='error_message_link' class='error_message_link'> - введите корректный адрес</span>").insertAfter($("#twitter_login"));
+
+					$("#twitter_login").css("border-color", "#ff0000");
+					$("#twitter_login").addClass("error_bording_link");
+				};
+
+				// Проверка Одноклассников
+				if ($("#ok_login").siblings("#error_message_link")) {
+					$("#ok_login").siblings().remove("#error_message_link");
+					$("#ok_login").css("border-color", "rgba(255, 255, 255, 0)");
+					$("#ok_login").removeClass("error_bording_link");
+					form_ok = $("#ok_login").val(); // Записали ссылку на профиль в Одноклассниках для последнего этапа
+				};
+				if (!valid_link_ok.test(form_ok) && !$("#ok_login").hasClass("hide_social_link")) {
+
+					$("<span id='error_message_link' class='error_message_link'> - введите корректный адрес</span>").insertAfter($("#ok_login"));
+
+					$("#ok_login").css("border-color", "#ff0000");
+					$("#ok_login").addClass("error_bording_link");
+				};
+
+				// Если ничего не выбрано, то получаем сообщение об ошибке
+				// Если же все ссылки корректны, то можно двигаться дальше
+				if ((form_facebook == "") && (form_vk == "") && (form_twitter == "") && (form_vk == "")) {
+					$("<span id='error_message_checkbox' class='error_message_checkbox'>Необходимо ввести хотя бы один адрес</span>").insertBefore($(".social_group_facebook"));
+					
+
+				} else if (!(((form_facebook == "" || $("#facebook_login").hasClass("error_bording_link")) && !$("#facebook_login").hasClass("hide_social_link"))  ||
+					((form_vk == "" || $("#vk_login").hasClass("error_bording_link")) && !$("#vk_login").hasClass("hide_social_link")) ||
+					((form_twitter == "" || $("#twitter_login").hasClass("error_bording_link")) && !$("#twitter_login").hasClass("hide_social_link")) ||
+					((form_ok == "" || $("#ok_login").hasClass("error_bording_link")) && !$("#ok_login").hasClass("hide_social_link")))) {
+
+					$("#step_3").css("display", "none");
+					$("#step_4").css("display", "inline-block");
+					to_step = 4;
+	
+				};
+			};
+
+
 
 
 			$(document).on("click", ".next", function () {
@@ -293,8 +409,8 @@
 				} else if (to_step == 2) {
 					validCountryCity();
 				} else if (to_step == 3) {
-					
-				}
+					validSocial();
+				};
 			});
 
 			$(document).on("click", ".prev", function () {
@@ -306,6 +422,10 @@
 					to_step = 2;
 					$("#step_3").css("display", "none");
 					$("#step_2").css("display", "inline-block");
+				} else if (to_step == 4) {
+					to_step = 3;
+					$("#step_4").css("display", "none");
+					$("#step_3").css("display", "inline-block");
 				};
 			});
 

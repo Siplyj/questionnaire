@@ -50,3 +50,11 @@
 #vk_login, #twitter_login, #ok_login {
 	margin-top: 0px;
 }
+
+.error_message_checkbox {
+	display: inline-table;
+	position: absolute;
+    top: 56px;
+	width: 300px;
+	color: #ff0000;
+}
