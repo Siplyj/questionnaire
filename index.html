@@ -189,11 +189,8 @@
 					$("#step_1").css("display", "none");
 					$("#step_2").css("display", "inline-block");
 					to_step = 2;
-				}
-			}
-
-
-
+				};
+			};
 
 
 			//Второй этап
@@ -215,11 +212,17 @@
 					$("#select_countries ul").css("display", "block");
 					$("#select_cities ul").css("display", "none");
 				};
-
 			});
 
 			// Фильтруем список стран в зависимости от введенных букв
 			$(document).on("keyup", "#countries_header", function () {
+				if($("#countries_header").val() != "") {
+					$("#cities_header").css("background", "#ffffff");
+					$("#cities_header").removeAttr("disabled");
+				} else {
+					$("#cities_header").css("background", "#e6e6e6");
+					$("#cities_header").prop("disabled", true);
+				};
 
 				$("#select_countries ul li").each(function() {
 					if ($(this).text().toLowerCase().indexOf($("#countries_header").val().toLowerCase())) {
@@ -228,7 +231,7 @@
 						$(this).css("display", "inline-block");
 						$("#select_countries ul").css("display", "block");
 						$("#select_cities ul").css("display", "none");
-					}
+					};
 				});
 			});
 
@@ -243,9 +246,7 @@
 				if ($("#select_cities ul li").length > 0) { 
 					$("#select_cities ul li").remove();
 					$("#cities_header").val("");
-					// $("#cities_header").css("color", "#bbbbbb");
 					$("#select_cities ul").css("display", "none");
-
 				};
 
 				form_country_val = $(this).attr("data-country"); // Записали номер страны для загрузки спика нужных городов
@@ -288,7 +289,7 @@
 						$(this).css("display", "inline-block");
 						$("#select_cities ul").css("display", "block");
 						$("#select_countries ul").css("display", "none");
-					}
+					};
 				});
 			});
 
@@ -310,7 +311,7 @@
 				if ((event.target.id != "countries_header") && (event.target.id != "cities_header")) {
 					$("#select_countries ul").css("display", "none");
 					$("#select_cities ul").css("display", "none");
-				}
+				};
 			});
 
 			function validCountryCity() {
@@ -331,7 +332,7 @@
 
 					$("#countries_header").addClass("error_bording_country");
 					$("#countries_header").css("border-style", "solid");
-				} 
+				};
 
 				if ($("#cities_header").val() == "") {
 					$("<span class='error_message_city'> - поле не может быть пустым</span>").insertAfter($("#cities_header"));
@@ -341,7 +342,7 @@
 
 					$("#cities_header").addClass("error_bording_city");
 					$("#cities_header").css("border-style", "solid");
-				} 
+				};
 
 				if (($("#countries_header").val() != "") && ($("#cities_header").val() != "")) {
 					$("#step_2").css("display", "none");
@@ -349,8 +350,7 @@
 					form_country_name = $("#countries_header").val();
 					form_city_name = $("#cities_header").val();
 					to_step = 3;
-				}
-
+				};
 			};
 
 
@@ -442,6 +442,7 @@
 					$("#ok_login").removeClass("error_bording_link");
 					form_ok = $("#ok_login").val(); // Записали ссылку на профиль в Одноклассниках для последнего этапа
 				};
+
 				if (!valid_link_ok.test(form_ok) && !$("#ok_login").hasClass("hide_social_link")) {
 
 					$("<span id='error_message_link' class='error_message_link'> - введите корректный адрес</span>").insertAfter($("#ok_login"));
@@ -452,10 +453,9 @@
 
 				// Если ничего не выбрано, то получаем сообщение об ошибке
 				// Если же все ссылки корректны, то можно двигаться дальше
-				if ((form_facebook == "") && (form_vk == "") && (form_twitter == "") && (form_vk == "")) {
+				if ((form_facebook == "") && (form_vk == "") && (form_twitter == "") && (form_ok == "")) {
 					$("<span id='error_message_checkbox' class='error_message_checkbox'>Необходимо ввести хотя бы один адрес</span>").insertBefore($(".social_group_facebook"));
 					
-
 				} else if (!(((form_facebook == "" || $("#facebook_login").hasClass("error_bording_link")) && !$("#facebook_login").hasClass("hide_social_link"))  ||
 					((form_vk == "" || $("#vk_login").hasClass("error_bording_link")) && !$("#vk_login").hasClass("hide_social_link")) ||
 					((form_twitter == "" || $("#twitter_login").hasClass("error_bording_link")) && !$("#twitter_login").hasClass("hide_social_link")) ||
@@ -469,6 +469,7 @@
 					$(".next").css("color", "#ffffff");
 				};
 			};
+
 
 			// Четвертый этап
 			// Клик по изображениям. Если выбрана собачка, то показываем предупреждение
@@ -503,9 +504,8 @@
 					$("#error_message_animal").css("display", "block");
 				} else {
 					$("#error_message_animal_none").css("display", "block");
-				}
-			}
-
+				};
+			};
 
 
 			// Пятый этап
@@ -572,7 +572,7 @@
 				$("#step_5 p").each(function function_name(argument) {
 					if ($(this).width() > max_width) {
 						max_width = $(this).width();
-					}
+					};
 				});
 				var step_5_width = 25 + max_width + 50 + $(".final_cat").width() + 24 + "px";
 				$("#step_5").css("width", step_5_width);
