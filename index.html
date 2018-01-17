@@ -216,6 +216,14 @@
 
 			// Фильтруем список стран в зависимости от введенных букв
 			$(document).on("keyup", "#countries_header", function () {
+
+				// Если список городов не пуст - очистить его
+				if ($("#select_cities ul li").length > 0) { 
+					$("#select_cities ul li").remove();
+					$("#cities_header").val("");
+					$("#select_cities ul").css("display", "none");
+				};
+
 				if($("#countries_header").val() != "") {
 					$("#cities_header").css("background", "#ffffff");
 					$("#cities_header").removeAttr("disabled");
@@ -271,6 +279,8 @@
 
 			// Клик по заголовку списка городов
 			$(document).on("click", "#cities_header", function () {
+				
+				$("#select_countries ul").css("display", "none");
 
 				if ($("#select_cities ul").is(":visible")) {
 					$("#select_cities ul").css("display", "none");
