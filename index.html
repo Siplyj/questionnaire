@@ -36,9 +36,9 @@
 
 		<div class="step_title">1. Введите имя и e-mail</div>
 
-		<input type="text" class="login" placeholder="Имя">
+		<input type="text" class="login" placeholder="Имя" autocomplete="off">
 		</br>
-		<input type="text" class="email" placeholder="E-mail">
+		<input type="text" class="email" placeholder="E-mail" autocomplete="off">
 		</br>
 	</form>
 
@@ -68,23 +68,23 @@
 		<p class="social_group social_group_facebook">
 			<input type="checkbox" id="facebook_checkbox" class="checkbox">
 			<label for="facebook_checkbox" class="social_network">Facebook</label>
-			<input type="text" class="hide_social_link" id="facebook_login" style="border: 2px solid rgba(255, 255, 255, 0); border-radius: 2px;" placeholder="Ваша страница в Facebook">
+			<input type="text" class="hide_social_link" id="facebook_login" style="border: 2px solid rgba(255, 255, 255, 0); border-radius: 2px;" placeholder="Ваша страница в Facebook" autocomplete="off">
 		</p>
 
 		<p class="social_group social_group_vk">
 			<input type="checkbox" id="vk_checkbox" class="checkbox">
 			<label for="vk_checkbox" class="social_network">Вконтакте</label>
-			<input type="text" class="hide_social_link" id="vk_login" style="border: 2px solid rgba(255, 255, 255, 0); border-radius: 2px;" placeholder="Ваша страница в Вконтакте">
+			<input type="text" class="hide_social_link" id="vk_login" style="border: 2px solid rgba(255, 255, 255, 0); border-radius: 2px;" placeholder="Ваша страница в Вконтакте" autocomplete="off">
 		</p>
 		<p class="social_group social_group_twitter">
 			<input type="checkbox" id="twitter_checkbox" class="checkbox">
 			<label for="twitter_checkbox" class="social_network">Twitter</label>
-			<input type="text" class="hide_social_link" id="twitter_login" style="border: 2px solid rgba(255, 255, 255, 0); border-radius: 2px;" placeholder="Ваша страница в Twitter">
+			<input type="text" class="hide_social_link" id="twitter_login" style="border: 2px solid rgba(255, 255, 255, 0); border-radius: 2px;" placeholder="Ваша страница в Twitter" autocomplete="off">
 		</p>
 		<p class="social_group social_group_ok">
 			<input type="checkbox" id="ok_checkbox" class="checkbox">
 			<label for="ok_checkbox" class="social_network">Одноклассники</label>
-			<input type="text" class="hide_social_link" id="ok_login" style="border: 2px solid rgba(255, 255, 255, 0); border-radius: 2px;" placeholder="Ваша страница в Одноклассниках">
+			<input type="text" class="hide_social_link" id="ok_login" style="border: 2px solid rgba(255, 255, 255, 0); border-radius: 2px;" placeholder="Ваша страница в Одноклассниках" autocomplete="off">
 		</p>
 	</form>
 
@@ -279,7 +279,7 @@
 
 			// Клик по заголовку списка городов
 			$(document).on("click", "#cities_header", function () {
-				
+
 				$("#select_countries ul").css("display", "none");
 
 				if ($("#select_cities ul").is(":visible")) {
