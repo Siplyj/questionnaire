@@ -58,18 +58,7 @@
     box-sizing: border-box;
 }
 
-#countries_header::-webkit-input-placeholder {
-	color: #bbbbbb;
-}
-
-#countries_header::-moz-placeholder-color {
-	color: #bbbbbb;
-}
-
-#cities_header::-webkit-input-placeholder {
-	color: #bbbbbb;
-}
-
-#cities_header::-moz-placeholder-color {
+#countries_header::-webkit-input-placeholder, #countries_header::-moz-placeholder-color,
+#cities_header::-webkit-input-placeholder, #cities_header::-moz-placeholder-color {
 	color: #bbbbbb;
 }

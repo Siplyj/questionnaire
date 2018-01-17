@@ -43,6 +43,13 @@
 	font-family: "Open Sans";
 }
 
+#facebook_login::-webkit-input-placeholder, #facebook_login::-moz-placeholder-color,
+#vk_login::-webkit-input-placeholder, #vk_login::-moz-placeholder-color,
+#twitter_login::-webkit-input-placeholder, #twitter_login::-moz-placeholder-color,
+#ok_login::-webkit-input-placeholder, #ok_login::-moz-placeholder-color {
+	color: #bbbbbb;
+}
+
 .hide_social_link {
 	visibility: hidden;
 }

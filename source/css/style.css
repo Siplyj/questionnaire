@@ -49,19 +49,8 @@ form {
 	margin-right: -4px;
 }
 
-.login::-webkit-input-placeholder {
-	color: #bbbbbb;
-}
-
-.login::-moz-placeholder-color {
-	color: #bbbbbb;
-}
-
-.email::-webkit-input-placeholder {
-	color: #bbbbbb;
-}
-
-.email::-moz-placeholder-color {
+.login::-webkit-input-placeholder, .login::-moz-placeholder-color,
+.email::-webkit-input-placeholder, .email::-moz-placeholder-color  {
 	color: #bbbbbb;
 }
 
