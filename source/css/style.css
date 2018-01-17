@@ -140,6 +140,7 @@ form {
 	margin-left: 5px;
 	width: 240px;
 	color: #ff0000;
+	cursor: default;
 }
 
 #error_message_animal, #error_message_animal_none {

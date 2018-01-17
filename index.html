@@ -47,13 +47,15 @@
 		<div class="step_title">2. Выберите страну и город</div>
 
 		<ul id="select_countries">
-			<li><a id="countries_header">Страна</a>
+			<li>
+				<input type="text" id="countries_header" placeholder="Страна" val="Страна" autocomplete="off">
 				<ul style="z-index: 1"></ul>
 			</li>
 		</ul>
 				
 		<ul id="select_cities">
-			<li><a id="cities_header">Город</a>
+			<li>
+				<input type="text" id="cities_header" placeholder="Город" val="Город" autocomplete="off" style="background: #e6e6e6" disabled>
 				<ul style="z-index: 1"></ul>
 			</li>
 		</ul>
@@ -216,27 +218,44 @@
 
 			});
 
+			// Фильтруем список стран в зависимости от введенных букв
+			$(document).on("keyup", "#countries_header", function () {
+
+				$("#select_countries ul li").each(function() {
+					if ($(this).text().toLowerCase().indexOf($("#countries_header").val().toLowerCase())) {
+						$(this).css("display", "none");
+					} else {
+						$(this).css("display", "inline-block");
+						$("#select_countries ul").css("display", "block");
+						$("#select_cities ul").css("display", "none");
+					}
+				});
+			});
+
 			// Клик по названию страны из списка
 			$(document).on("click", ".countries_element", function () {
 
-				$("#select_countries").removeClass("error_bording_country");
-				$("#select_countries").css("border-style", "none");
+				$("#countries_header").removeClass("error_bording_country");
+				$("#countries_header").css("border-style", "none");
 				$(".error_message_country").remove();
 
 				// Если список городов не пуст - очистить его
-				if ($(".cities_element").length > 0) { 
-					$(".cities_element").remove();
-					$("#cities_header").html("Город");
-					$("#cities_header").css("color", "#bbbbbb");
+				if ($("#select_cities ul li").length > 0) { 
+					$("#select_cities ul li").remove();
+					$("#cities_header").val("");
+					// $("#cities_header").css("color", "#bbbbbb");
 					$("#select_cities ul").css("display", "none");
+
 				};
 
 				form_country_val = $(this).attr("data-country"); // Записали номер страны для загрузки спика нужных городов
 				form_country_name = $(this).text(); // Записали название страны для последнего этапа
-				$("#countries_header").html(form_country_name);
+				$("#countries_header").val(form_country_name);
 				$("#countries_header").css("color", "#000000");
 				$("#select_countries ul").css("display", "none");
 				$("#select_cities").css("display", "block");
+				$("#cities_header").css("background", "#ffffff");
+				$("#cities_header").removeAttr("disabled");
 
 				// Получение списка городов
 				$.getJSON("data/cities/cities.json", function(data){
@@ -259,52 +278,76 @@
 				};
 			});
 
+			// Фильтруем список городов в зависимости от введенных букв
+			$(document).on("keyup", "#cities_header", function () {
+
+				$("#select_cities ul li").each(function() {
+					if ($(this).text().toLowerCase().indexOf($("#cities_header").val().toLowerCase())) {
+						$(this).css("display", "none");
+					} else {
+						$(this).css("display", "inline-block");
+						$("#select_cities ul").css("display", "block");
+						$("#select_countries ul").css("display", "none");
+					}
+				});
+			});
+
 			// Клик по названию города из списка
 			$(document).on("click", ".cities_element", function () { // Если выбрали город
 
-				$("#select_cities").removeClass("error_bording_city");
-				$("#select_cities").css("border-style", "none");
+				$("#cities_header").removeClass("error_bording_city");
+				$("#cities_header").css("border-style", "none");
 				$(".error_message_city").remove();
 
 				form_city_name = $(this).text(); // записали название города для последнего этапа
-				$("#cities_header").html(form_city_name);
+				$("#cities_header").val(form_city_name);
 				$("#cities_header").css("color", "#000000");
 				$("#select_cities ul").css("display", "none");
 			});
 
+			// Скрыть списки при клике на область вне поля ввода и списка
+			$(document).on("click", function (event) {
+				if ((event.target.id != "countries_header") && (event.target.id != "cities_header")) {
+					$("#select_countries ul").css("display", "none");
+					$("#select_cities ul").css("display", "none");
+				}
+			});
+
 			function validCountryCity() {
 
-				$("#select_countries").removeClass("error_bording_country");
-				$("#select_countries").css("border-style", "none");
+				$("#countries_header").removeClass("error_bording_country");
+				$("#countries_header").css("border-style", "none");
 				$(".error_message_country").remove();
 
 				$("#select_cities").removeClass("error_bording_city");
-				$("#select_cities").css("border-style", "none");
+				$("#cities_header").css("border-style", "none");
 				$(".error_message_city").remove();
 
-				if ($("#countries_header").html() == "Страна") {
-					$("<span class='error_message_country'> - поле не может быть пустым</span>").insertAfter($("#select_countries"));
+				if ($("#countries_header").val() == "") {
+					$("<span class='error_message_country'> - поле не может быть пустым</span>").insertAfter($("#countries_header"));
 
 					$(".error_message_country").css("left", 100 + "%");
-					$(".error_message_country").css("top", $("#select_countries").position().top + $("#select_countries").outerHeight(true) - $("#select_countries").outerHeight()/2 - $(".error_message_country").outerHeight() / 2);
+					$(".error_message_country").css("top", $("#countries_header").position().top + $("#countries_header").outerHeight(true) - $("#countries_header").outerHeight()/2 - $(".error_message_country").outerHeight() / 2);
 
-					$("#select_countries").addClass("error_bording_country");
-					$("#select_countries").css("border-style", "solid");
+					$("#countries_header").addClass("error_bording_country");
+					$("#countries_header").css("border-style", "solid");
 				} 
 
-				if ($("#cities_header").html() == "Город") {
-					$("<span class='error_message_city'> - поле не может быть пустым</span>").insertAfter($("#select_countries"));
+				if ($("#cities_header").val() == "") {
+					$("<span class='error_message_city'> - поле не может быть пустым</span>").insertAfter($("#cities_header"));
 
 					$(".error_message_city").css("left", 100 + "%");
-					$(".error_message_city").css("top", $("#select_cities").position().top + $("#select_cities").outerHeight(true) - $("#select_cities").outerHeight()/2 - $(".error_message_city").outerHeight() / 2);
+					$(".error_message_city").css("top", $("#cities_header").position().top + $("#cities_header").outerHeight(true) - $("#cities_header").outerHeight()/2 - $(".error_message_city").outerHeight() / 2);
 
-					$("#select_cities").addClass("error_bording_city");
-					$("#select_cities").css("border-style", "solid");
+					$("#cities_header").addClass("error_bording_city");
+					$("#cities_header").css("border-style", "solid");
 				} 
 
-				if (($("#countries_header").html() != "Страна") && ($("#cities_header").html() != "Город")) {
+				if (($("#countries_header").val() != "") && ($("#cities_header").val() != "")) {
 					$("#step_2").css("display", "none");
 					$("#step_3").css("display", "inline-block");
+					form_country_name = $("#countries_header").val();
+					form_city_name = $("#cities_header").val();
 					to_step = 3;
 				}
 
@@ -545,10 +588,13 @@
 					$(".email").val("");
 					form_email = "";
 
-					$("#countries_header").html("Страна");
-					$("#countries_header").css("color", "#bbbbbb");
-					$("#cities_header").html("Город");
-					$("#cities_header").css("color", "#bbbbbb");
+					$("#countries_header").val("");
+					$("#countries_header").css("color", "#000000");
+					$("#select_countries ul li").css("display", "inline-block");
+					$("#cities_header").val("");
+					$("#cities_header").css("color", "#000000");
+					$("#cities_header").css("background", "#e6e6e6");
+					$("#cities_header").prop("disabled", true);
 					$(".cities_element").remove();
 
 					$(".checkbox_check").click();
@@ -563,7 +609,6 @@
 					$(".next").val("Следующий  〉");
 					$(".next").css("background", "#ffffff");
 					$(".next").css("color", "#ff9800");
-					// $(".next").prop("disabled", true);
 
 					from_step = 1;
 					to_step = 1;
