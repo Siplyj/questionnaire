@@ -17,10 +17,10 @@
 
 <body>
 	<div class="paginat">
-		<input type="button" class="button_step_1 step_button_active" value="1" style="color: #000000">
-		<input type="button" class="button_step_2" disabled value="2">
-		<input type="button" class="button_step_3" disabled value="3">
-		<input type="button" class="button_step_4" disabled value="4">
+		<input type="button" class="button_step button_step_1 step_button_active" value="1" style="color: #000000">
+		<input type="button" class="button_step button_step_2" value="2">
+		<input type="button" class="button_step button_step_3" disabled value="3">
+		<input type="button" class="button_step button_step_4" disabled value="4">
 	</div>
 
 	<div id="final_button">
@@ -188,6 +188,7 @@
 				if (form_login && form_email) {
 					$("#step_1").css("display", "none");
 					$("#step_2").css("display", "inline-block");
+					$(".prev").css("visibility", "visible");
 					to_step = 2;
 				};
 			};
@@ -619,18 +620,16 @@
 					$(".next").val("Следующий  〉");
 					$(".next").css("background", "#ffffff");
 					$(".next").css("color", "#ff9800");
+					$(".prev").css("visibility", "hidden");
 
 					from_step = 1;
 					to_step = 1;
 					last_step = 1;
-					max_step = 1;	
+					max_step = 1;
 
 					$("#final_login, #final_email, #final_region, #final_social, #final_cat").empty();
 				});
 			}
-
-
-
 
 			// Переходы по кнопкам "Следующий"
 			$(document).on("click", ".next", function () {
@@ -647,22 +646,15 @@
 
 			// Переходы по кнопкам "Предыдущий"
 			$(document).on("click", ".prev", function () {
-				if (to_step == 2) {
-					to_step = 1;
-					$("#step_2").css("display", "none");
-					$("#step_1").css("display", "inline-block");
-				} else if (to_step == 3) {
-					to_step = 2;
-					$("#step_3").css("display", "none");
-					$("#step_2").css("display", "inline-block");
-				} else if (to_step == 4) {
-					to_step = 3;
-					$("#step_4").css("display", "none");
-					$("#step_3").css("display", "inline-block");
+				$("#step_" + to_step).css("display", "none");
+				to_step = to_step - 1;
+				$("#step_" + to_step).css("display", "inline-block");
+
+				if (to_step == 3) {
 					$(".next").val("Следующий  〉");
 					$(".next").css("background", "#ffffff");
 					$(".next").css("color", "#ff9800");
-				};
+				}
 			});
 
 		});

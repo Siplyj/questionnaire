@@ -49,8 +49,19 @@ form {
 	margin-right: -4px;
 }
 
-.login::-webkit-input-placeholder, .login::-moz-placeholder-color,
-.email::-webkit-input-placeholder, .email::-moz-placeholder-color  {
+.login::-webkit-input-placeholder {
+	color: #bbbbbb;
+}
+
+.login::-moz-placeholder-color {
+	color: #bbbbbb;
+}
+
+.email::-webkit-input-placeholder {
+	color: #bbbbbb;
+}
+
+.email::-moz-placeholder-color {
 	color: #bbbbbb;
 }
 
@@ -71,7 +82,11 @@ form {
 	font-weight: bold;
 }
 
-.button_step_2, .button_step_3, .button_step_4 {
+.button_step_2 {
+	color: #ff9800;
+}
+
+.button_step_3, .button_step_4 {
 	color: #808080;
 }
 
@@ -117,6 +132,10 @@ form {
 
 .next {
 	left: 12px;
+}
+
+.prev {
+	visibility: hidden;
 }
 
 .error_bording_login, .error_bording_email, .error_bording_country, .error_bording_city, .error_bording_link {
