@@ -633,27 +633,53 @@
 
 			// Переходы по кнопкам "Следующий"
 			$(document).on("click", ".next", function () {
-				if (to_step == 1) {
+				from_step = to_step;
+				if (from_step == 1) {
 					validLoginEmail();
-				} else if (to_step == 2) {
+				} else if (from_step == 2) {
 					validCountryCity();
-				} else if (to_step == 3) {
+				} else if (from_step == 3) {
 					validSocial();
-				} else if (to_step == 4) {
+				} else if (from_step == 4) {
 					validCat();
 				};
 			});
 
 			// Переходы по кнопкам "Предыдущий"
 			$(document).on("click", ".prev", function () {
-				$("#step_" + to_step).css("display", "none");
-				to_step = to_step - 1;
+				prevButton(this);			
+			});
+
+			// Переходы по кнопкам "Предыдущий" и на этапы с номером меньшим текущего
+			function prevButton(button) {
+				from_step = to_step;
+				$("#step_" + from_step).css("display", "none");
+
+				if ($(button).hasClass("prev")) {
+					to_step = from_step - 1;
+				} else {
+					to_step = $(button).attr('class').match(/\d+/)[0];
+				}
+
 				$("#step_" + to_step).css("display", "inline-block");
 
-				if (to_step == 3) {
+				if (to_step == 1) {
+					$(".prev").css("visibility", "hidden");
+				}
+
+				if (from_step == 4) {
 					$(".next").val("Следующий  〉");
 					$(".next").css("background", "#ffffff");
 					$(".next").css("color", "#ff9800");
+				}
+			}
+
+			// Переходы по цифрам
+			$(document).on("click", ".button_step", function () {
+				if ($(this).attr('class').match(/\d+/)[0] > to_step) {
+
+				} else if ($(this).attr('class').match(/\d+/)[0] < to_step) {
+					prevButton(this);
 				}
 			});
 
