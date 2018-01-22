@@ -467,10 +467,10 @@
 					$("<span id='error_message_checkbox' class='error_message_checkbox'>Необходимо ввести хотя бы один адрес</span>").insertBefore($(".social_group_facebook"));
 					invalidForm();
 					
-				} else if (!((form_facebook == "" || $("#facebook_login").hasClass("error_bording_link")) && !$("#facebook_login").hasClass("hide_social_link"))  ||
+				} else if (!(((form_facebook == "" || $("#facebook_login").hasClass("error_bording_link")) && !$("#facebook_login").hasClass("hide_social_link"))  ||
 					((form_vk == "" || $("#vk_login").hasClass("error_bording_link")) && !$("#vk_login").hasClass("hide_social_link")) ||
 					((form_twitter == "" || $("#twitter_login").hasClass("error_bording_link")) && !$("#twitter_login").hasClass("hide_social_link")) ||
-					((form_ok == "" || $("#ok_login").hasClass("error_bording_link")) && !$("#ok_login").hasClass("hide_social_link"))) {
+					((form_ok == "" || $("#ok_login").hasClass("error_bording_link")) && !$("#ok_login").hasClass("hide_social_link")))) {
 
 					validForm();
 					$(".next").val("Завершить");
