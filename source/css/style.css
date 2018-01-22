@@ -135,7 +135,8 @@ form {
 }
 
 .prev {
-	visibility: hidden;
+	color: #ffffff;
+	background: #000000;
 }
 
 .error_bording_login, .error_bording_email, .error_bording_country, .error_bording_city, .error_bording_link {
