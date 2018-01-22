@@ -18,7 +18,7 @@
 <body>
 	<div class="paginat">
 		<input type="button" class="button_step button_step_1 step_button_active" value="1" style="color: #000000">
-		<input type="button" class="button_step button_step_2" value="2">
+		<input type="button" class="button_step button_step_2" value="2" style="cursor: pointer">
 		<input type="button" class="button_step button_step_3" disabled value="3">
 		<input type="button" class="button_step button_step_4" disabled value="4">
 	</div>
@@ -186,10 +186,9 @@
 				};
 
 				if (form_login && form_email) {
-					$("#step_1").css("display", "none");
-					$("#step_2").css("display", "inline-block");
-					$(".prev").css("visibility", "visible");
-					to_step = 2;
+					validForm();
+				} else {
+					invalidForm();
 				};
 			};
 
@@ -356,11 +355,11 @@
 				};
 
 				if (($("#countries_header").val() != "") && ($("#cities_header").val() != "")) {
-					$("#step_2").css("display", "none");
-					$("#step_3").css("display", "inline-block");
 					form_country_name = $("#countries_header").val();
 					form_city_name = $("#cities_header").val();
-					to_step = 3;
+					validForm();
+				} else {
+					invalidForm();
 				};
 			};
 
@@ -379,7 +378,7 @@
 					$(this).siblings("input[type=text]").css("border-color", "rgba(255, 255, 255, 0)");
 					$(this).siblings("input[type=text]").val("");
 					$(this).siblings("span").remove("#error_message_link");
-				}
+				};
 			});
 
 			// Проверка каждого поля на корректное заполнение
@@ -466,18 +465,19 @@
 				// Если же все ссылки корректны, то можно двигаться дальше
 				if ((form_facebook == "") && (form_vk == "") && (form_twitter == "") && (form_ok == "")) {
 					$("<span id='error_message_checkbox' class='error_message_checkbox'>Необходимо ввести хотя бы один адрес</span>").insertBefore($(".social_group_facebook"));
+					invalidForm();
 					
-				} else if (!(((form_facebook == "" || $("#facebook_login").hasClass("error_bording_link")) && !$("#facebook_login").hasClass("hide_social_link"))  ||
+				} else if (!((form_facebook == "" || $("#facebook_login").hasClass("error_bording_link")) && !$("#facebook_login").hasClass("hide_social_link"))  ||
 					((form_vk == "" || $("#vk_login").hasClass("error_bording_link")) && !$("#vk_login").hasClass("hide_social_link")) ||
 					((form_twitter == "" || $("#twitter_login").hasClass("error_bording_link")) && !$("#twitter_login").hasClass("hide_social_link")) ||
-					((form_ok == "" || $("#ok_login").hasClass("error_bording_link")) && !$("#ok_login").hasClass("hide_social_link")))) {
+					((form_ok == "" || $("#ok_login").hasClass("error_bording_link")) && !$("#ok_login").hasClass("hide_social_link"))) {
 
-					$("#step_3").css("display", "none");
-					$("#step_4").css("display", "inline-block");
-					to_step = 4;
+					validForm();
 					$(".next").val("Завершить");
 					$(".next").css("background", "#ff9800");
 					$(".next").css("color", "#ffffff");
+				} else {
+					invalidForm();
 				};
 			};
 
@@ -513,8 +513,10 @@
 					final_data();
 				} else if (($(".dog4").css("border")) == "4px solid rgb(255, 145, 0)") {
 					$("#error_message_animal").css("display", "block");
+					invalidForm();
 				} else {
 					$("#error_message_animal_none").css("display", "block");
+					invalidForm();
 				};
 			};
 
@@ -622,6 +624,17 @@
 					$(".next").css("color", "#ff9800");
 					$(".prev").css("visibility", "hidden");
 
+					$(".button_step_1").addClass("step_button_active");
+					$(".button_step_1").css("color", "#000000");
+					$(".button_step_1").css("cursor", "default");
+
+					for (var i = 3; i <= max_step; i++) {
+						$(".button_step_" + i).removeClass("step_button_active");
+						$(".button_step_" + i).css("color", "#808080");
+						$(".button_step_" + i).css("cursor", "default");
+						$(".button_step_" + i).prop("disabled", true);
+					};
+
 					from_step = 1;
 					to_step = 1;
 					last_step = 1;
@@ -629,11 +642,23 @@
 
 					$("#final_login, #final_email, #final_region, #final_social, #final_cat").empty();
 				});
-			}
+			};
 
 			// Переходы по кнопкам "Следующий"
 			$(document).on("click", ".next", function () {
+				nextButton(this);
+			});
+
+			// Переходы по кнопкам "Следующий" и на этапы с номером большим текущего
+			function nextButton(button) {
 				from_step = to_step;
+
+				if ($(button).hasClass("next")) {
+					to_step = +from_step + 1;
+				} else {
+					to_step = $(button).attr('class').match(/\d+/)[0];
+				};
+
 				if (from_step == 1) {
 					validLoginEmail();
 				} else if (from_step == 2) {
@@ -643,11 +668,47 @@
 				} else if (from_step == 4) {
 					validCat();
 				};
-			});
+			};
+
+			// Выполнить если проверка этапа прошла успешно
+			function validForm() {
+				$(".button_step_" + from_step).removeClass("step_button_active");
+				$(".button_step_" + from_step).css("color", "#ff9800");
+				$(".button_step_" + from_step).css("cursor", "pointer");
+				$("#step_" + from_step).css("display", "none");
+
+				$(".button_step_" + to_step).addClass("step_button_active");
+				$(".button_step_" + to_step).css("color", "#000000");
+				$(".button_step_" + to_step).css("cursor", "default");
+				$("#step_" + to_step).css("display", "inline-block");
+
+				$(".button_step_" + (+to_step + 1)).removeAttr("disabled");
+				$(".button_step_" + (+to_step + 1)).css("color", "#ff9800");
+				$(".button_step_" + (+to_step + 1)).css("cursor", "pointer");
+
+				if (max_step == from_step) {
+					last_step = to_step;
+					max_step = to_step;
+				} else {
+					last_step = max_step;
+				}
+
+				if (to_step != 1) {
+					$(".prev").css("visibility", "visible");
+				};
+				// alert("from:" + from_step + " to:" + to_step + " last:" + last_step + " max:" + max_step);
+			};
+
+			// Выполнить если проверка этапа провалилась
+			function invalidForm() {
+				from_step = $(".step_button_active").attr('class').match(/\d+/)[0];
+				to_step = $(".step_button_active").attr('class').match(/\d+/)[0];
+				last_step = to_step;
+			};
 
 			// Переходы по кнопкам "Предыдущий"
 			$(document).on("click", ".prev", function () {
-				prevButton(this);			
+				prevButton(this);
 			});
 
 			// Переходы по кнопкам "Предыдущий" и на этапы с номером меньшим текущего
@@ -659,28 +720,39 @@
 					to_step = from_step - 1;
 				} else {
 					to_step = $(button).attr('class').match(/\d+/)[0];
-				}
+				};
 
 				$("#step_" + to_step).css("display", "inline-block");
 
+				$(".button_step_" + from_step).removeClass("step_button_active");
+				$(".button_step_" + from_step).css("color", "#ff9800");
+				$(".button_step_" + from_step).css("cursor", "pointer");
+				$(".button_step_" + to_step).addClass("step_button_active");
+				$(".button_step_" + to_step).css("color", "#000000");
+				$(".button_step_" + to_step).css("cursor", "default");
+
 				if (to_step == 1) {
 					$(".prev").css("visibility", "hidden");
-				}
+				};
 
 				if (from_step == 4) {
 					$(".next").val("Следующий  〉");
 					$(".next").css("background", "#ffffff");
 					$(".next").css("color", "#ff9800");
-				}
-			}
+				};
+			};
 
 			// Переходы по цифрам
 			$(document).on("click", ".button_step", function () {
-				if ($(this).attr('class').match(/\d+/)[0] > to_step) {
-
-				} else if ($(this).attr('class').match(/\d+/)[0] < to_step) {
+				if ($(this).attr('class').match(/\d+/)[0] - to_step > 1) { // если между этапами 1 или более этапов
+					for (var i = to_step; i <= $(this).attr('class').match(/\d+/)[0]; i++) {
+						nextButton(".button_step_" + i);
+					};
+				} else if ($(this).attr('class').match(/\d+/)[0] - to_step == 1) { // если переход на следующий этап
+					nextButton(this);
+				} else if ($(this).attr('class').match(/\d+/)[0] < to_step) { // если переход на предыдущий этап
 					prevButton(this);
-				}
+				};
 			});
 
 		});
