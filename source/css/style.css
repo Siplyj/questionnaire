@@ -41,8 +41,8 @@ form {
 	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 	padding: 0px 0px 0px 20px;
 	-webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 .login, .email {
@@ -150,6 +150,11 @@ form {
 	color: #ff0000;
 	cursor: default;
 	font-size: 14px;
+}
+
+[class ^= "error_message_login"], [class ^= "error_message_country"] {
+	width: 100%;
+	left: 100%;
 }
 
 [class ^= "error_message_login"]:before, [class ^= "error_message_country"]:before, [class ^= "error_message_link"]:before {

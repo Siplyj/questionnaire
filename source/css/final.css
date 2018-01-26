@@ -6,26 +6,32 @@
 }
 
 #final_login {
+	position: initial;
+	display: table;
 	font-size: 20px;
 	font-family: "Open Sans";
 	margin: 35px 0px 0px 25px;
-    width: max-content;
+	width: max-content;
 }
 
 #final_email {
+	position: initial;
+	display: table;
 	font-size: 15px;
 	font-family: "Open Sans";
 	color: #808080;
 	margin: 10px 0px 0px 25px;
-    width: max-content;
+	width: max-content;
 }
 
 #final_region {
+	position: initial;
+	display: table;
 	font-size: 15px;
 	font-family: "Open Sans";
 	color: #808080;
 	margin: 20px 0px 0px 25px;
-    width: max-content;
+	width: max-content;
 }
 
 #final_social {
@@ -36,7 +42,8 @@
 	font-family: "Open Sans";
 	color: #808080;
 	margin-left: 25px;
-    width: max-content;
+	width: -webkit-max-content;
+	width: -moz-max-content;
 }
 
 #final_social a {

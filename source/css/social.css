@@ -11,7 +11,7 @@
 .social_group {
 	display: inline-table;
 	position: absolute;
-	width: 225%;
+	width: 640px;
 }
 
 .social_group_facebook {
@@ -86,12 +86,12 @@
 .error_message_checkbox {
 	display: inline-table;
 	position: absolute;
-    top: 56px;
+	top: 56px;
 	width: 300px;
 	color: #ff0000;
 }
 
 [class ^= "error_message_link"] {
-    top: 50%;
-    transform: translate(0%, -50%);
+	top: 50%;
+	transform: translate(0%, -50%);
 }

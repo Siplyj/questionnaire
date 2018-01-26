@@ -131,8 +131,7 @@
 			var to_step = 1; // На какой этап пришли
 			var last_step = 1; // Последний доступный этап
 			var max_step = 1; // Тоже последний доступный этап. Нужен для проверок различных частных случаев
-			
-			// var arrError = ["login", "country", "link"];
+
 			longOrNot();
 
 			function validLoginEmail() {
@@ -422,10 +421,10 @@
 				var valid_link_ok = /((http|https):\/\/)?(www.)?ok.ru\/[a-z0-9_\.-]+$/gi;
 
 				// Проверка Facebook
-				
 				$("#error_message_link1").css("visibility", "hidden");
 				$("#facebook_login").css("border-color", "rgba(255, 255, 255, 0)");
 				$("#facebook_login").removeClass("error_bording_link");
+				$(".error_message_link1").css("left", $(".link").offset().left - $("#step_3").offset().left + $(".link").outerWidth())
 				form_facebook = $("#facebook_login").val(); // Записали ссылку на профиль в Facebook для последнего этапа
 
 				if (form_facebook != "" && !valid_link_facebook.test(form_facebook) && $("#error_message_link1").css("visibility") == "hidden") {
@@ -433,12 +432,14 @@
 					$("#error_message_link1").css("visibility", "visible");
 					$("#facebook_login").css("border-color", "#ff0000");
 					$("#facebook_login").addClass("error_bording_link");
+					$("#error_message_link1").css("visibility", "visible");
 				};
 
 				// Проверка Вконтакте
 				$("#error_message_link2").css("visibility", "hidden");
 				$("#vk_login").css("border-color", "rgba(255, 255, 255, 0)");
 				$("#vk_login").removeClass("error_bording_link");
+				$(".error_message_link2").css("left", $(".link").offset().left - $("#step_3").offset().left + $(".link").outerWidth())
 				form_vk = $("#vk_login").val(); // Записали ссылку на профиль в Вконтакте для последнего этапа
 
 				if (form_vk != "" && !valid_link_vk.test(form_vk) && $("#error_message_link2").css("visibility") == "hidden") {
@@ -452,6 +453,7 @@
 				$("#error_message_link3").css("visibility", "hidden");
 				$("#twitter_login").css("border-color", "rgba(255, 255, 255, 0)");
 				$("#twitter_login").removeClass("error_bording_link");
+				$(".error_message_link3").css("left", $(".link").offset().left - $("#step_3").offset().left + $(".link").outerWidth())
 				form_twitter = $("#twitter_login").val(); // Записали ссылку на профиль в Twitter для последнего этапа
 
 				if (form_twitter != "" && !valid_link_twitter.test(form_twitter) && $("#error_message_link3").css("visibility") == "hidden") {
@@ -465,6 +467,7 @@
 				$("#error_message_link4").css("visibility", "hidden");
 				$("#ok_login").css("border-color", "rgba(255, 255, 255, 0)");
 				$("#ok_login").removeClass("error_bording_link");
+				$(".error_message_link4").css("left", $(".link").offset().left - $("#step_3").offset().left + $(".link").outerWidth())
 				form_ok = $("#ok_login").val(); // Записали ссылку на профиль в Одноклассниках для последнего этапа
 
 				if (form_ok != "" && !valid_link_ok.test(form_ok) && $("#error_message_link4").css("visibility") == "hidden") {
@@ -632,7 +635,7 @@
 					$(".paginat").css("display", "inline-block");
 					$(".prev_next").css("display", "inline-block");
 					$(".go_to_start").css("display", "none");
-					$(".next").val("Следующий  〉");
+					$(".next").val("Следующий 〉");
 					$(".next").css("background", "#ffffff");
 					$(".next").css("color", "#ff9800");
 					$(".prev").val("GitHub");
@@ -764,7 +767,7 @@
 				};
 
 				if (from_step == 4) {
-					$(".next").val("Следующий  〉");
+					$(".next").val("Следующий 〉");
 					$(".next").css("background", "#ffffff");
 					$(".next").css("color", "#ff9800");
 				};
