@@ -1,0 +1,13 @@
+.long {
+	position: absolute;
+	margin-left: -29%;
+	margin-top: 10px;
+}
+
+[class ^= "error_message_login"].long, [class ^= "error_message_country"].long {
+	margin-left: -68%;
+}
+
+.long:before {
+	visibility: hidden;
+}

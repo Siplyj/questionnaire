@@ -91,6 +91,7 @@
 	color: #ff0000;
 }
 
-.error_message_link {
-    top: 7px;
+[class ^= "error_message_link"] {
+    top: 50%;
+    transform: translate(0%, -50%);
 }

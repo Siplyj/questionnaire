@@ -143,16 +143,20 @@ form {
 	border: 2px solid #ff0000;
 }
 
-.error_message_login, .error_message_email, .error_message_country, .error_message_city, .error_message_link {
+[class ^= "error_message_login"], [class ^= "error_message_country"], [class ^= "error_message_link"] {
 	display: inline-table;
 	position: absolute;
 	margin-left: 5px;
-	width: 240px;
 	color: #ff0000;
 	cursor: default;
+	font-size: 14px;
 }
 
-#error_message_animal, #error_message_animal_none {
+[class ^= "error_message_login"]:before, [class ^= "error_message_country"]:before, [class ^= "error_message_link"]:before {
+	content: " - ";
+}
+
+[id ^= "error_message_animal"] {
 	position: absolute;
 	top: 230px;
 	left: -166px;
@@ -197,4 +201,8 @@ form {
 	background: url(../../data/images/dog4.jpg);
 	background-size: 330px 240px;
 	background-position: 57% 0%;
+}
+
+.error {
+	visibility: hidden;
 }

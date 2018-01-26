@@ -11,6 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="source/css/select.css">
 	<link rel="stylesheet" type="text/css" href="source/css/social.css">
 	<link rel="stylesheet" type="text/css" href="source/css/final.css">
+	<link rel="stylesheet" type="text/css" href="source/css/mobile.css">
 
 	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans" />
 </head>
@@ -29,7 +30,7 @@
 
 	<div class="prev_next">
 		<input type="button" class="prev" value="GitHub" onclick="window.open('https://github.com/Siplyj/questionnaire')">
-		<input type="button" class="next" value="Следующий  〉">
+		<input type="button" class="next" value="Следующий 〉">
 	</div>
 
 	<form id="step_1" class="auth-form" method="post">
@@ -37,8 +38,12 @@
 		<div class="step_title">1. Введите имя и e-mail</div>
 
 		<input type="text" class="login" placeholder="Имя" autocomplete="off">
+		<span class="error_message_login1 error">поле не может быть пустым</span>
+		<span class="error_message_login2 error">логин введен некорректно</span>
 		</br>
 		<input type="text" class="email" placeholder="E-mail" autocomplete="off">
+		<span class="error_message_login3 error">поле не может быть пустым</span>
+		<span class="error_message_login4 error">email введен некорректно</span>
 		</br>
 	</form>
 
@@ -48,14 +53,16 @@
 
 		<ul id="select_countries">
 			<li>
-				<input type="text" id="countries_header" placeholder="Страна" val="Страна" autocomplete="off">
+				<input type="text" id="countries_header" class="country" placeholder="Страна" val="Страна" autocomplete="off">
+				<span class="error_message_country1 error">поле не может быть пустым</span>
 				<ul style="z-index: 1"></ul>
 			</li>
 		</ul>
 				
 		<ul id="select_cities">
 			<li>
-				<input type="text" id="cities_header" placeholder="Город" val="Город" autocomplete="off" style="background: #e6e6e6" disabled>
+				<input type="text" id="cities_header" class="city" placeholder="Город" val="Город" autocomplete="off" style="background: #e6e6e6" disabled>
+				<span class="error_message_country2 error">поле не может быть пустым</span>
 				<ul style="z-index: 1"></ul>
 			</li>
 		</ul>
@@ -68,23 +75,27 @@
 		<p class="social_group social_group_facebook">
 			<input type="checkbox" id="facebook_checkbox" class="checkbox">
 			<label for="facebook_checkbox" class="social_network">Facebook</label>
-			<input type="text" class="hide_social_link" id="facebook_login" style="border: 2px solid rgba(255, 255, 255, 0); border-radius: 2px;" placeholder="Ваша страница в Facebook" autocomplete="off">
+			<input type="text" class="hide_social_link link" id="facebook_login" style="border: 2px solid rgba(255, 255, 255, 0); border-radius: 2px;" placeholder="Ваша страница в Facebook" autocomplete="off">
+			<span id="error_message_link1" class="error_message_link1 error">введите корректный адрес</span>
 		</p>
 
 		<p class="social_group social_group_vk">
 			<input type="checkbox" id="vk_checkbox" class="checkbox">
 			<label for="vk_checkbox" class="social_network">Вконтакте</label>
-			<input type="text" class="hide_social_link" id="vk_login" style="border: 2px solid rgba(255, 255, 255, 0); border-radius: 2px;" placeholder="Ваша страница в Вконтакте" autocomplete="off">
+			<input type="text" class="hide_social_link link" id="vk_login" style="border: 2px solid rgba(255, 255, 255, 0); border-radius: 2px;" placeholder="Ваша страница в Вконтакте" autocomplete="off">
+			<span id="error_message_link2" class="error_message_link2 error">введите корректный адрес</span>
 		</p>
 		<p class="social_group social_group_twitter">
 			<input type="checkbox" id="twitter_checkbox" class="checkbox">
 			<label for="twitter_checkbox" class="social_network">Twitter</label>
-			<input type="text" class="hide_social_link" id="twitter_login" style="border: 2px solid rgba(255, 255, 255, 0); border-radius: 2px;" placeholder="Ваша страница в Twitter" autocomplete="off">
+			<input type="text" class="hide_social_link link" id="twitter_login" style="border: 2px solid rgba(255, 255, 255, 0); border-radius: 2px;" placeholder="Ваша страница в Twitter" autocomplete="off">
+			<span id="error_message_link3" class="error_message_link3 error">введите корректный адрес</span>
 		</p>
 		<p class="social_group social_group_ok">
 			<input type="checkbox" id="ok_checkbox" class="checkbox">
 			<label for="ok_checkbox" class="social_network">Одноклассники</label>
-			<input type="text" class="hide_social_link" id="ok_login" style="border: 2px solid rgba(255, 255, 255, 0); border-radius: 2px;" placeholder="Ваша страница в Одноклассниках" autocomplete="off">
+			<input type="text" class="hide_social_link link" id="ok_login" style="border: 2px solid rgba(255, 255, 255, 0); border-radius: 2px;" placeholder="Ваша страница в Одноклассниках" autocomplete="off">
+			<span id="error_message_link4" class="error_message_link4 error">введите корректный адрес</span>
 		</p>
 	</form>
 
@@ -96,8 +107,8 @@
 		<div class="cats cat2"></div>
 		<div class="cats cat3"></div>
 		<div class="dogs dog4"></div></br>
-		<p id='error_message_animal'>Вы выбрали собачку. А надо котика.</p>
-		<p id='error_message_animal_none'>Вы забыли выбрать котика.</p>
+		<p id="error_message_animal">Вы выбрали собачку. А надо котика.</p>
+		<p id="error_message_animal_none">Вы забыли выбрать котика.</p>
 	</form>
 
 	<form id="step_5" class="auth-form" method="post">
@@ -120,6 +131,9 @@
 			var to_step = 1; // На какой этап пришли
 			var last_step = 1; // Последний доступный этап
 			var max_step = 1; // Тоже последний доступный этап. Нужен для проверок различных частных случаев
+			
+			// var arrError = ["login", "country", "link"];
+			longOrNot();
 
 			function validLoginEmail() {
 
@@ -129,29 +143,35 @@
 
 				$(".login").removeClass("error_bording_login");
 				$(".login").css("border-style", "none");
-				$(".error_message_login").remove();
+				$(".error_message_login1").css("visibility", "hidden");
+				$(".error_message_login2").css("visibility", "hidden");
 
 				if (!valid_login.test(login)) {
 
 					if (!$(".login").hasClass("error_bording_login")) {
 
 						if($(".login").val() == 0) {
-							$("<span class='error_message_login'> - поле не может быть пустым</span>").insertAfter($(".login"));
+							$(".error_message_login2").css("visibility", "hidden");
+							$(".error_message_login1").css("visibility", "visible");
+							$(".error_message_login1").css("left", 100 + "%");
+							$(".error_message_login1").css("top", $(".login").position().top + $(".login").outerHeight(true) - $(".login").outerHeight()/2 - $(".error_message_login1").outerHeight() / 2);
 						} else {
-							$("<span class='error_message_login'> - логин введен некорректно</span>").insertAfter($(".login"));
+							$(".error_message_login1").css("visibility", "hidden");
+							$(".error_message_login2").css("visibility", "visible");
+							$(".error_message_login2").css("left", 100 + "%");
+							$(".error_message_login2").css("top", $(".login").position().top + $(".login").outerHeight(true) - $(".login").outerHeight()/2 - $(".error_message_login2").outerHeight() / 2);
 						}
 						$(".login").addClass("error_bording_login");
 						$(".login").css("border-style", "solid");
 					};
-
-					$(".error_message_login").css("left", 100 + "%");
-					$(".error_message_login").css("top", $(".login").position().top + $(".login").outerHeight(true) - $(".login").outerHeight()/2 - $(".error_message_login").outerHeight() / 2);
-						form_login = "";
+					form_login = "";
+					
 				} else {
 					form_login = login;
 					$(".login").removeClass("error_bording_login");
 					$(".login").css("border-style", "none");
-					$(".error_message_login").remove();
+					$(".error_message_login1").css("visibility", "hidden");
+					$(".error_message_login2").css("visibility", "hidden");
 				};
 
 				// Проверка e-mail
@@ -160,29 +180,35 @@
 
 				$(".email").removeClass("error_bording_email");
 				$(".email").css("border-style", "none");
-				$(".error_message_email").remove();
+				$(".error_message_login3").css("visibility", "hidden");
+				$(".error_message_login4").css("visibility", "hidden");
 
 				if (!valid_email.test(email)) {
 
 					if (!$(".email").hasClass("error_bording_email")) {
 
 						if($(".email").val() == 0) {
-							$("<span class='error_message_email'> - поле не может быть пустым</span>").insertAfter($(".email"));
+							$(".error_message_login4").css("visibility", "hidden");
+							$(".error_message_login3").css("visibility", "visible");
+							// $(".error_message_login3").css("left", 100 + "%");
+							$(".error_message_login3").css("top", $(".email").position().top + $(".email").outerHeight(true) - $(".email").outerHeight()/2 - $(".error_message_login3").outerHeight() / 2);
 						} else {
-							$("<span class='error_message_email'> - email введен некорректно</span>").insertAfter($(".email"));
+							$(".error_message_login3").css("visibility", "hidden");
+							$(".error_message_login4").css("visibility", "visible");
+							// $(".error_message_login4").css("left", 100 + "%");
+							$(".error_message_login4").css("top", $(".email").position().top + $(".email").outerHeight(true) - $(".email").outerHeight()/2 - $(".error_message_login4").outerHeight() / 2);
 						}
 						$(".email").addClass("error_bording_email");
 						$(".email").css("border-style", "solid");
 					};
+					form_email = "";
 
-					$(".error_message_email").css("left", 100 + "%");
-					$(".error_message_email").css("top", $(".email").position().top + $(".email").outerHeight(true) - $(".email").outerHeight()/2 - $(".error_message_email").outerHeight() / 2);
-						form_email = "";
 				} else {
 					form_email = email;
 					$(".email").removeClass("error_bording_email");
 					$(".email").css("border-style", "none");
-					$(".error_message_email").remove();
+					$(".error_message_login3").css("visibility", "hidden");
+					$(".error_message_login4").css("visibility", "hidden");
 				};
 
 				if (form_login && form_email) {
@@ -248,7 +274,7 @@
 
 				$("#countries_header").removeClass("error_bording_country");
 				$("#countries_header").css("border-style", "none");
-				$(".error_message_country").remove();
+				$(".error_message_country1").css("visibility", "hidden");
 
 				// Если список городов не пуст - очистить его
 				if ($("#select_cities ul li").length > 0) { 
@@ -308,7 +334,7 @@
 
 				$("#cities_header").removeClass("error_bording_city");
 				$("#cities_header").css("border-style", "none");
-				$(".error_message_city").remove();
+				$(".error_message_country2").css("visibility", "hidden");
 
 				form_city_name = $(this).text(); // записали название города для последнего этапа
 				$("#cities_header").val(form_city_name);
@@ -328,27 +354,25 @@
 
 				$("#countries_header").removeClass("error_bording_country");
 				$("#countries_header").css("border-style", "none");
-				$(".error_message_country").remove();
+				$(".error_message_country1").css("visibility", "hidden");
 
 				$("#select_cities").removeClass("error_bording_city");
 				$("#cities_header").css("border-style", "none");
-				$(".error_message_city").remove();
+				$(".error_message_country2").css("visibility", "hidden");
 
 				if ($("#countries_header").val() == "") {
-					$("<span class='error_message_country'> - поле не может быть пустым</span>").insertAfter($("#countries_header"));
-
-					$(".error_message_country").css("left", 100 + "%");
-					$(".error_message_country").css("top", $("#countries_header").position().top + $("#countries_header").outerHeight(true) - $("#countries_header").outerHeight()/2 - $(".error_message_country").outerHeight() / 2);
+					$(".error_message_country1").css("visibility", "visible");
+					$(".error_message_country1").css("left", 100 + "%");
+					$(".error_message_country1").css("top", $("#countries_header").position().top + $("#countries_header").outerHeight(true) - $("#countries_header").outerHeight()/2 - $(".error_message_country1").outerHeight() / 2);
 
 					$("#countries_header").addClass("error_bording_country");
 					$("#countries_header").css("border-style", "solid");
 				};
 
 				if ($("#cities_header").val() == "") {
-					$("<span class='error_message_city'> - поле не может быть пустым</span>").insertAfter($("#cities_header"));
-
-					$(".error_message_city").css("left", 100 + "%");
-					$(".error_message_city").css("top", $("#cities_header").position().top + $("#cities_header").outerHeight(true) - $("#cities_header").outerHeight()/2 - $(".error_message_city").outerHeight() / 2);
+					$(".error_message_country2").css("visibility", "visible");
+					$(".error_message_country2").css("left", 100 + "%");
+					$(".error_message_country2").css("top", $("#cities_header").position().top + $("#cities_header").outerHeight(true) - $("#cities_header").outerHeight()/2 - $(".error_message_country2").outerHeight() / 2);
 
 					$("#cities_header").addClass("error_bording_city");
 					$("#cities_header").css("border-style", "solid");
@@ -370,14 +394,14 @@
 				// Если чекбокс включился, то показать соответствующее поле для ввода
 				if ($(this).prop("checked")) { 
 					$(this).addClass("checkbox_check");
-					$(this).siblings("input[type=text]").removeAttr("class");
+					$(this).siblings("input[type=text]").removeClass("hide_social_link");
 				} else {
 					$(this).removeClass("checkbox_check");
 					$(this).siblings("input[type=text]").removeClass("error_bording_link");
 					$(this).siblings("input[type=text]").addClass("hide_social_link");
 					$(this).siblings("input[type=text]").css("border-color", "rgba(255, 255, 255, 0)");
 					$(this).siblings("input[type=text]").val("");
-					$(this).siblings("span").remove("#error_message_link");
+					$(this).siblings("span").css("visibility", "hidden");
 				};
 			});
 
@@ -398,65 +422,54 @@
 				var valid_link_ok = /((http|https):\/\/)?(www.)?ok.ru\/[a-z0-9_\.-]+$/gi;
 
 				// Проверка Facebook
-				if ($("#facebook_login").siblings("#error_message_link")) {
-					$("#facebook_login").siblings().remove("#error_message_link");
-					$("#facebook_login").css("border-color", "rgba(255, 255, 255, 0)");
-					$("#facebook_login").removeClass("error_bording_link");
-					form_facebook = $("#facebook_login").val(); // Записали ссылку на профиль в Facebook для последнего этапа
-				};
+				
+				$("#error_message_link1").css("visibility", "hidden");
+				$("#facebook_login").css("border-color", "rgba(255, 255, 255, 0)");
+				$("#facebook_login").removeClass("error_bording_link");
+				form_facebook = $("#facebook_login").val(); // Записали ссылку на профиль в Facebook для последнего этапа
 
-				if (!valid_link_facebook.test(form_facebook) && !$("#facebook_login").hasClass("hide_social_link")) {
+				if (form_facebook != "" && !valid_link_facebook.test(form_facebook) && $("#error_message_link1").css("visibility") == "hidden") {
 
-					$("<span id='error_message_link' class='error_message_link'> - введите корректный адрес</span>").insertAfter($("#facebook_login"));
-
+					$("#error_message_link1").css("visibility", "visible");
 					$("#facebook_login").css("border-color", "#ff0000");
 					$("#facebook_login").addClass("error_bording_link");
 				};
 
 				// Проверка Вконтакте
-				if ($("#vk_login").siblings("#error_message_link")) {
-					$("#vk_login").siblings().remove("#error_message_link");
-					$("#vk_login").css("border-color", "rgba(255, 255, 255, 0)");
-					$("#vk_login").removeClass("error_bording_link");
-					form_vk = $("#vk_login").val(); // Записали ссылку на профиль в Вконтакте для последнего этапа
-				};
+				$("#error_message_link2").css("visibility", "hidden");
+				$("#vk_login").css("border-color", "rgba(255, 255, 255, 0)");
+				$("#vk_login").removeClass("error_bording_link");
+				form_vk = $("#vk_login").val(); // Записали ссылку на профиль в Вконтакте для последнего этапа
 
-				if (!valid_link_vk.test(form_vk) && !$("#vk_login").hasClass("hide_social_link")) {
+				if (form_vk != "" && !valid_link_vk.test(form_vk) && $("#error_message_link2").css("visibility") == "hidden") {
 
-					$("<span id='error_message_link' class='error_message_link'> - введите корректный адрес</span>").insertAfter($("#vk_login"));
-
+					$("#error_message_link2").css("visibility", "visible");
 					$("#vk_login").css("border-color", "#ff0000");
 					$("#vk_login").addClass("error_bording_link");
 				};
 
 				// Проверка Twitter
-				if ($("#twitter_login").siblings("#error_message_link")) {
-					$("#twitter_login").siblings().remove("#error_message_link");
-					$("#twitter_login").css("border-color", "rgba(255, 255, 255, 0)");
-					$("#twitter_login").removeClass("error_bording_link");
-					form_twitter = $("#twitter_login").val(); // Записали ссылку на профиль в Twitter для последнего этапа
-				};
+				$("#error_message_link3").css("visibility", "hidden");
+				$("#twitter_login").css("border-color", "rgba(255, 255, 255, 0)");
+				$("#twitter_login").removeClass("error_bording_link");
+				form_twitter = $("#twitter_login").val(); // Записали ссылку на профиль в Twitter для последнего этапа
 
-				if (!valid_link_twitter.test(form_twitter) && !$("#twitter_login").hasClass("hide_social_link")) {
+				if (form_twitter != "" && !valid_link_twitter.test(form_twitter) && $("#error_message_link3").css("visibility") == "hidden") {
 
-					$("<span id='error_message_link' class='error_message_link'> - введите корректный адрес</span>").insertAfter($("#twitter_login"));
-
+					$("#error_message_link3").css("visibility", "visible");
 					$("#twitter_login").css("border-color", "#ff0000");
 					$("#twitter_login").addClass("error_bording_link");
 				};
 
 				// Проверка Одноклассников
-				if ($("#ok_login").siblings("#error_message_link")) {
-					$("#ok_login").siblings().remove("#error_message_link");
-					$("#ok_login").css("border-color", "rgba(255, 255, 255, 0)");
-					$("#ok_login").removeClass("error_bording_link");
-					form_ok = $("#ok_login").val(); // Записали ссылку на профиль в Одноклассниках для последнего этапа
-				};
+				$("#error_message_link4").css("visibility", "hidden");
+				$("#ok_login").css("border-color", "rgba(255, 255, 255, 0)");
+				$("#ok_login").removeClass("error_bording_link");
+				form_ok = $("#ok_login").val(); // Записали ссылку на профиль в Одноклассниках для последнего этапа
 
-				if (!valid_link_ok.test(form_ok) && !$("#ok_login").hasClass("hide_social_link")) {
+				if (form_ok != "" && !valid_link_ok.test(form_ok) && $("#error_message_link4").css("visibility") == "hidden") {
 
-					$("<span id='error_message_link' class='error_message_link'> - введите корректный адрес</span>").insertAfter($("#ok_login"));
-
+					$("#error_message_link4").css("visibility", "visible");
 					$("#ok_login").css("border-color", "#ff0000");
 					$("#ok_login").addClass("error_bording_link");
 				};
@@ -582,7 +595,7 @@
 
 				//Динамическое изменение ширины блока в зависимости от ширины контента
 				var max_width = 0;
-				$("#step_5 p").each(function function_name(argument) {
+				$("#step_5 p").each(function(argument) {
 					if ($(this).width() > max_width) {
 						max_width = $(this).width();
 					};
@@ -659,7 +672,7 @@
 				if ($(button).hasClass("next")) {
 					to_step = +from_step + 1;
 				} else {
-					to_step = $(button).attr('class').match(/\d+/)[0];
+					to_step = $(button).attr("class").match(/\d+/)[0];
 				};
 
 				if (from_step == 1) {
@@ -702,13 +715,16 @@
 					$(".prev").css("color", "#ff9800");
 					$(".prev").removeAttr("onclick");
 				};
+
+				longOrNot();
 			};
 
 			// Выполнить если проверка этапа провалилась
 			function invalidForm() {
-				from_step = $(".step_button_active").attr('class').match(/\d+/)[0];
-				to_step = $(".step_button_active").attr('class').match(/\d+/)[0];
+				from_step = $(".step_button_active").attr("class").match(/\d+/)[0];
+				to_step = $(".step_button_active").attr("class").match(/\d+/)[0];
 				last_step = to_step;
+				longOrNot();
 			};
 
 			// Переходы по кнопкам "Предыдущий"
@@ -728,7 +744,7 @@
 				if ($(button).hasClass("prev")) {
 					to_step = from_step - 1;
 				} else {
-					to_step = $(button).attr('class').match(/\d+/)[0];
+					to_step = $(button).attr("class").match(/\d+/)[0];
 				};
 
 				$("#step_" + to_step).css("display", "inline-block");
@@ -752,19 +768,41 @@
 					$(".next").css("background", "#ffffff");
 					$(".next").css("color", "#ff9800");
 				};
+				longOrNot();
 			};
 
 			// Переходы по цифрам
 			$(document).on("click", ".button_step", function () {
-				if ($(this).attr('class').match(/\d+/)[0] - to_step > 1) { // если между этапами 1 или более этапов
-					for (var i = to_step; i <= $(this).attr('class').match(/\d+/)[0]; i++) {
+				if ($(this).attr("class").match(/\d+/)[0] - to_step > 1) { // если между этапами 1 или более этапов
+					for (var i = to_step; i <= $(this).attr("class").match(/\d+/)[0]; i++) {
 						nextButton(".button_step_" + i);
 					};
-				} else if ($(this).attr('class').match(/\d+/)[0] - to_step == 1) { // если переход на следующий этап
+				} else if ($(this).attr("class").match(/\d+/)[0] - to_step == 1) { // если переход на следующий этап
 					nextButton(this);
-				} else if ($(this).attr('class').match(/\d+/)[0] < to_step) { // если переход на предыдущий этап
+				} else if ($(this).attr("class").match(/\d+/)[0] < to_step) { // если переход на предыдущий этап
 					prevButton(this);
 				};
+			});
+
+			// Определение помещается ли сообщение об ошибке на странице без горизонтальной прокрутки или нет
+			function longOrNot() {
+				var arrError = ["login", "country", "link"];
+				$.each(arrError, function(argument) {
+					if ($(".error_message_" + this + 1).outerWidth() != 0) {
+						for (var i = 1; i <= $("[class ^= error_message_" + this + "]").length; i++) {
+							if (($("." + this).offset().left + $("." + this).outerWidth() + $(".error_message_" + this + 1).outerWidth()) > $(window).outerWidth()) {
+								$(".error_message_" + this + i).addClass("long");
+							} else {
+								$(".error_message_" + this + i).removeClass("long");
+							};
+						};
+					};
+				});
+			};
+			
+			// Обработка сжатия/растягивания страницы
+			$(window).resize(function() {
+				longOrNot();
 			});
 
 		});
