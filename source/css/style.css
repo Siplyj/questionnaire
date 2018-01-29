@@ -145,7 +145,6 @@ form {
 
 [class ^= "error_message_login"], [class ^= "error_message_country"], [class ^= "error_message_link"] {
 	display: inline-table;
-	position: absolute;
 	margin-left: 5px;
 	color: #ff0000;
 	cursor: default;
@@ -153,6 +152,7 @@ form {
 }
 
 [class ^= "error_message_login"], [class ^= "error_message_country"] {
+	position: absolute;
 	width: 100%;
 	left: 100%;
 }
@@ -209,5 +209,18 @@ form {
 }
 
 .error {
+	visibility: hidden;
+}
+
+.long {
+	position: absolute;
+	margin: 10px 0 0 -31%;
+}
+
+[class ^= "error_message_login"].long, [class ^= "error_message_country"].long {
+	margin-left: -68%;
+}
+
+.long:before {
 	visibility: hidden;
 }

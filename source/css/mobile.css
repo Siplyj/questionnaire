@@ -1,13 +1,191 @@
-.long {
-	position: absolute;
-	margin-left: -31%;
-	margin-top: 10px;
-}
+@media screen and (max-width: 690px) {
+	body {
+		width: 100%;
+	}
+	
+	.paginat {
+		display: inline-block;
+		position: absolute;
+		width: 100%;
+		height: 40px;
+		top: 20px;
+		left: 0;
+		transform: translate(0, 0);
+		text-align: center;
+	}
 
-[class ^= "error_message_login"].long, [class ^= "error_message_country"].long {
-	margin-left: -68%;
-}
+	form {
+		display: inline-block;
+		position: absolute;
+		width: 100%;
+		top: 60px;
+		left: 0;
+		transform: translate(0, 0);
+		text-align: center;
+	}
 
-.long:before {
-	visibility: hidden;
+	.prev_next {
+		top: 450px;
+		height: 40px;
+	}
+
+	.prev, .next {
+		top: 0px;
+	}
+	
+	[class ^= "error_message_login"], [class ^= "error_message_country"] {
+		left: 0px !important;
+	}
+
+	[class ^= "error_message_login"].long, [class ^= "error_message_country"].long {
+		margin-left: 0px;
+		margin-top: 13px;
+	}
+
+	#select_countries, #select_cities {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	#select_cities {
+		margin-top: 0px;
+	}
+
+	.countries_element, .cities_element {
+		padding-left: 0px !important;
+	}
+
+	input[type="checkbox"] {
+		position: absolute;
+		left: 0;
+	}
+
+	.error_message_checkbox {
+		position: relative;
+		top: 20px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.social_group {
+		display: inline-block;
+		position: absolute;
+		width: 300px;
+		left: 50%;
+		transform: translate(-50%, 0);
+	}
+
+	.social_network {
+		margin-left: 20px;
+		width: 130px;
+		text-align: left;
+		display: inline-block;
+		position: absolute;
+	}
+
+	.social_group_vk {
+		top: 136px;
+	}
+
+	.social_group_twitter {
+		top: 195px;
+	}
+
+	.social_group_ok {
+		top: 254px;
+	}
+
+	.error_message_checkbox {
+			display: block;
+		}
+
+	[class ^= "error_message_link"], [class ^= "error_message_link"].long {
+		margin: 10px auto 0 auto;
+		position: initial;
+	}
+
+	#facebook_login, #vk_login, #twitter_login, #ok_login {
+		display: inline-block;
+		position: relative;
+		padding-left: 0px;
+		width: 300px;
+		top: 20px;
+		left: 0;
+		text-align: center;
+	}
+
+	.cat1 {
+		top: 20px;
+		left: -153px;
+	}
+
+	.cat2 {
+		top: 20px;
+		left: 0px;
+	}
+
+	.cat3 {
+		top: 173px;
+		left: -153px;
+	}
+
+	.dog4 {
+		top: 173px;
+		left: 0px;
+	}
+
+	.cats, .dogs {
+		margin-left: 50%;
+		width: 145px;
+		height: 145px;
+	}
+
+	[id ^= "error_message_animal"] {
+		display: none;
+		position: initial;
+		margin: -20px auto 0 auto;
+	}
+
+	#step_5 {
+		left: 5%;
+		right: 5%;
+		top: 5%;
+		width: 90% !important;
+		height: auto;
+	}
+
+	#final_login, #final_email, #final_region, #final_social, .final_cat {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.final_cat {
+		left: 0px !important;
+		right: 0px;
+		top: 10px;
+	}
+
+	#final_login {
+		margin-top: 220px;
+	}
+
+	#final_email {
+		margin-top: 0px;
+	}
+
+	#final_region {
+		margin-top: 10px;
+	}
+
+	#final_social {
+		text-align: left;
+		margin-left: 5%;
+		position: initial;
+	}
+
+	#final_button {
+		top: 0px;
+		height: 0px;
+		transform: translate(-50%, 0%);
+	}
 }

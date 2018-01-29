@@ -5,6 +5,8 @@
 	<meta charset="UTF-8">
 	<title>Анкета</title>
 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 	<script type="text/javascript" src="source/jquery-3.2.1.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="source/css/style.css">
@@ -107,7 +109,7 @@
 		<div class="cats cat2"></div>
 		<div class="cats cat3"></div>
 		<div class="dogs dog4"></div></br>
-		<p id="error_message_animal">Вы выбрали собачку. А надо котика.</p>
+		<p id="error_message_animal_dog">Вы выбрали собачку. А надо котика.</p>
 		<p id="error_message_animal_none">Вы забыли выбрать котика.</p>
 	</form>
 
@@ -189,12 +191,10 @@
 						if($(".email").val() == 0) {
 							$(".error_message_login4").css("visibility", "hidden");
 							$(".error_message_login3").css("visibility", "visible");
-							// $(".error_message_login3").css("left", 100 + "%");
 							$(".error_message_login3").css("top", $(".email").position().top + $(".email").outerHeight(true) - $(".email").outerHeight()/2 - $(".error_message_login3").outerHeight() / 2);
 						} else {
 							$(".error_message_login3").css("visibility", "hidden");
 							$(".error_message_login4").css("visibility", "visible");
-							// $(".error_message_login4").css("left", 100 + "%");
 							$(".error_message_login4").css("top", $(".email").position().top + $(".email").outerHeight(true) - $(".email").outerHeight()/2 - $(".error_message_login4").outerHeight() / 2);
 						}
 						$(".email").addClass("error_bording_email");
@@ -413,7 +413,6 @@
 				form_vk = $("#vk_login").val();
 				form_twitter = $("#twitter_login").val();
 				form_ok = $("#ok_login").val();
-
 				
 				var valid_link_facebook = /((http|https):\/\/)?(www.)?(fb|facebook).com\/[a-z0-9_\.-]+$/gi;
 				var valid_link_vk = /((http|https):\/\/)?(www.)?vk.com\/[a-z0-9_\.-]+$/gi;
@@ -424,11 +423,9 @@
 				$("#error_message_link1").css("visibility", "hidden");
 				$("#facebook_login").css("border-color", "rgba(255, 255, 255, 0)");
 				$("#facebook_login").removeClass("error_bording_link");
-				$(".error_message_link1").css("left", $(".link").offset().left - $("#step_3").offset().left + $(".link").outerWidth())
 				form_facebook = $("#facebook_login").val(); // Записали ссылку на профиль в Facebook для последнего этапа
 
 				if (form_facebook != "" && !valid_link_facebook.test(form_facebook) && $("#error_message_link1").css("visibility") == "hidden") {
-
 					$("#error_message_link1").css("visibility", "visible");
 					$("#facebook_login").css("border-color", "#ff0000");
 					$("#facebook_login").addClass("error_bording_link");
@@ -439,11 +436,9 @@
 				$("#error_message_link2").css("visibility", "hidden");
 				$("#vk_login").css("border-color", "rgba(255, 255, 255, 0)");
 				$("#vk_login").removeClass("error_bording_link");
-				$(".error_message_link2").css("left", $(".link").offset().left - $("#step_3").offset().left + $(".link").outerWidth())
 				form_vk = $("#vk_login").val(); // Записали ссылку на профиль в Вконтакте для последнего этапа
 
 				if (form_vk != "" && !valid_link_vk.test(form_vk) && $("#error_message_link2").css("visibility") == "hidden") {
-
 					$("#error_message_link2").css("visibility", "visible");
 					$("#vk_login").css("border-color", "#ff0000");
 					$("#vk_login").addClass("error_bording_link");
@@ -453,11 +448,9 @@
 				$("#error_message_link3").css("visibility", "hidden");
 				$("#twitter_login").css("border-color", "rgba(255, 255, 255, 0)");
 				$("#twitter_login").removeClass("error_bording_link");
-				$(".error_message_link3").css("left", $(".link").offset().left - $("#step_3").offset().left + $(".link").outerWidth())
 				form_twitter = $("#twitter_login").val(); // Записали ссылку на профиль в Twitter для последнего этапа
 
 				if (form_twitter != "" && !valid_link_twitter.test(form_twitter) && $("#error_message_link3").css("visibility") == "hidden") {
-
 					$("#error_message_link3").css("visibility", "visible");
 					$("#twitter_login").css("border-color", "#ff0000");
 					$("#twitter_login").addClass("error_bording_link");
@@ -471,7 +464,6 @@
 				form_ok = $("#ok_login").val(); // Записали ссылку на профиль в Одноклассниках для последнего этапа
 
 				if (form_ok != "" && !valid_link_ok.test(form_ok) && $("#error_message_link4").css("visibility") == "hidden") {
-
 					$("#error_message_link4").css("visibility", "visible");
 					$("#ok_login").css("border-color", "#ff0000");
 					$("#ok_login").addClass("error_bording_link");
@@ -480,6 +472,7 @@
 				// Если ничего не выбрано, то получаем сообщение об ошибке
 				// Если же все ссылки корректны, то можно двигаться дальше
 				if ((form_facebook == "") && (form_vk == "") && (form_twitter == "") && (form_ok == "")) {
+
 					$("<span id='error_message_checkbox' class='error_message_checkbox'>Необходимо ввести хотя бы один адрес</span>").insertBefore($(".social_group_facebook"));
 					invalidForm();
 					
@@ -492,11 +485,18 @@
 					$(".next").val("Завершить");
 					$(".next").css("background", "#ff9800");
 					$(".next").css("color", "#ffffff");
+
+					if(window.matchMedia("(max-width: 690px)").matches) {
+						$(".cat1").css("left", "-153px");
+						$(".cat3").css("left", "-153px");
+					} else {
+						$(".cat3").css("left", "166px");
+					}
+
 				} else {
 					invalidForm();
 				};
 			};
-
 
 			// Четвертый этап
 			// Клик по изображениям. Если выбрана собачка, то показываем предупреждение
@@ -504,11 +504,10 @@
 
 				if ($(this).hasClass("cats")) {
 					$(".cats").css("border", "4px solid #f5f5f5");
-					$(this).css("display", "block");
-					$(this).css("border", "4px solid #ff9100");
-					$("#error_message_animal").css("display", "none");
-					$("#error_message_animal_none").css("display", "none");
 					$(".dog4").css("border", "4px solid #f5f5f5");
+					$(this).css("border", "4px solid #ff9100");
+					$("#error_message_animal_dog").css("display", "none");
+					$("#error_message_animal_none").css("display", "none");
 					form_cat = $(this).clone(); // Записываем котика для последнего этапа
 				} else if ($(this).hasClass("dogs")) {
 					$("#error_message_animal_none").css("display", "none");
@@ -525,10 +524,11 @@
 					$(".paginat").css("display", "none");
 					$(".prev_next").css("display", "none");
 					$(".go_to_start").css("display", "inline-block");
+					$(".go_to_start").css("display", "inline-block");
 					to_step = 5;
 					final_data();
 				} else if (($(".dog4").css("border")) == "4px solid rgb(255, 145, 0)") {
-					$("#error_message_animal").css("display", "block");
+					$("#error_message_animal_dog").css("display", "block");
 					invalidForm();
 				} else {
 					$("#error_message_animal_none").css("display", "block");
@@ -605,6 +605,14 @@
 				});
 				var step_5_width = 25 + max_width + 50 + $(".final_cat").width() + 24 + "px";
 				$("#step_5").css("width", step_5_width);
+
+				// Определение расположения кнопки
+				if (window.matchMedia("(max-width: 690px)").matches) {
+					var button_top = +$("#step_5").css("top").match(/\d+/)[0] + $("#step_5").outerHeight() + $(".go_to_start").outerHeight() + 20 + "px";
+					$("#final_button").css("top", button_top);
+				} else {
+					$("#final_button").css("top", "");
+				};
 
 				// Обнуляем кучу всего
 				$(document).on("click", ".go_to_start", function () {
@@ -805,9 +813,24 @@
 			
 			// Обработка сжатия/растягивания страницы
 			$(window).resize(function() {
+
+				if($("#step_5").css("display") == "none" && window.matchMedia("(max-width: 690px)").matches) {
+					$(".cat1").css("left", "-153px");
+					$(".cat3").css("left", "-153px");
+				} else if ($("#step_5").css("display") == "none" && window.matchMedia("(min-width: 690px)")) {
+					$(".cat1").css("left", "-166px");
+					$(".cat3").css("left", "166px");
+				};
+
+				if (window.matchMedia("(max-width: 690px)").matches) {
+					var button_top = +$("#step_5").css("top").match(/\d+/)[0] + $("#step_5").outerHeight() + $(".go_to_start").outerHeight() + 20 + "px";
+					$("#final_button").css("top", button_top);
+				} else {
+					$("#final_button").css("top", "");
+				};
+
 				longOrNot();
 			});
-
 		});
 	</script>
 </body>

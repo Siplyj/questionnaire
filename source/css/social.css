@@ -92,6 +92,22 @@
 }
 
 [class ^= "error_message_link"] {
+	display: inline-block;
+	position: inherit;
 	top: 50%;
 	transform: translate(0%, -50%);
+}
+
+[class ^= "error_message_link"], x:-moz-any-link {
+	margin-left: -39% !important
+}
+
+[class ^= "error_message_link"].long {
+	margin-top: 4%;
+	transform: translate(0%, -50%);
+	top: 0px;
+}
+
+[class ^= "error_message_link"].long, x:-moz-any-link {
+	margin-left: -39% !important
 }

@@ -42,8 +42,7 @@
 	font-family: "Open Sans";
 	color: #808080;
 	margin-left: 25px;
-	width: -webkit-max-content;
-	width: -moz-max-content;
+	width: max-content;
 }
 
 #final_social a {
@@ -71,7 +70,6 @@
 	display: inline-block;
 	position: absolute;
 	height: 245px;
-	width: 560px;
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -20.61%);
